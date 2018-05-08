@@ -28,10 +28,6 @@ If \code{ascp=FALSE}, then files will be saved in the \code{'destdir'}
 We recommend using Aspera for fast downloading. You need to install Aspera for using \code{ascp} option.
 }
 \examples{
-
 get_srr(srr_id="SRR6324192", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public", ascp_path="/home/user/.aspera/")
-
-}
-\references{
 
 }

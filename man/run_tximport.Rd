@@ -16,20 +16,19 @@ run_tximport(srr_id, species = c("human", "mouse", "rat"), salmon_dir,
 
 \item{countsFromAbundance}{whether to generate counts based on abundance. Available options are: \code{'no'}, 
 \code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
-\code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \code{'tximport'} for further details.}
+\code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size).}
 }
 \value{
-a list of gene and transcript level estimated counts summarized by Bioconductor package \code{'tximport'}.
+a list of gene and transcript level estimated counts.
 }
 \description{
 \code{run_tximport} function runs tximport on transcript level abundances from Salmon to summarize to gene level. See Bioconductor package
-\code{'tximport'} for details.
+\link[tximport]{tximport} for details.
 }
 \details{
 We use Ensembl annotation for both genes and transcripts.
 }
 \examples{
-
 run_tximport(srr_id="SRR6324192", species="human", salmon_dir="/home/salmon", countsFromAbundance = "lengthScaledTPM")
 
 }

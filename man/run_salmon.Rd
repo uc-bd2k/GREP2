@@ -12,7 +12,7 @@ run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
 
 \item{library_layout}{layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[build_index]{build_index}.}
+\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \\link[GREP2]{build_index}.}
 
 \item{destdir}{directory where all the results will be saved.}
 
@@ -37,7 +37,7 @@ The following items will be returned and saved in the salmon directory:
 }
 }
 \description{
-\code{run_salmon} wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
+\code{run_salmon} is a wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
 For index building see \link[build_index]{build_index}.
 }
 \details{
@@ -45,7 +45,6 @@ For index building see \link[build_index]{build_index}.
 For other options from Salmon use \code{'other_opts'}.
 }
 \examples{
-
 run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="/home/human_transcripts_release92_index/", destdir="/home",
 fastq_dir="/home/SRR6324192/", use_trimmed_fastq=FALSE, other_opts=NULL, n_thread=2 )
 

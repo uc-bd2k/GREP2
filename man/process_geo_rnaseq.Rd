@@ -29,13 +29,13 @@ A new window will pop-up and under the \code{'Workspace Name'}, you will find th
 
 \item{trimmomatic_path}{path to Trimmomatic software.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[build_index]{build_index}.}
+\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.}
 
 \item{species}{name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.}
 
 \item{countsFromAbundance}{whether to generate counts based on abundance. Available options are: \code{'no'}, 
 \code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
-\code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \code{'tximport'} for further details.}
+\code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \link[tximport]{tximport} for further details.}
 
 \item{n_thread}{number of cores to use.}
 }
@@ -48,7 +48,6 @@ Bioconductor package \code{'tximport'} is also saved in the \code{destdir}.
 We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping.
 }
 \examples{
-
 process_geo_rnaseq (geo_series_acc="GSE107363", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public",
 ascp_path="/home/user/.aspera/", get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL, index_dir="/home/human_transcripts_release91_index/",
 species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
