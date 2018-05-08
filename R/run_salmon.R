@@ -37,7 +37,7 @@
 #' run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="/home/human_transcripts_release92_index/", destdir="/home",
 #' fastq_dir="/home/SRR6324192/", use_trimmed_fastq=FALSE, other_opts=NULL, n_thread=2 )
 #'
-#' @export
+#' @export 
 run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"), index_dir, destdir, fastq_dir, use_trimmed_fastq=FALSE, other_opts=NULL, n_thread ) {
 
 	setwd(destdir)

@@ -16,7 +16,7 @@
 #'
 #' get_fastq(srr_id="SRR6324192", library_layout="SINGLE", get_sra_file=FALSE, sra_files_dir=NULL, n_thread=2, destdir="/home")
 #'
-#' @export
+#' @export 
 get_fastq <- function(srr_id, library_layout=c("SINGLE","PAIRED"), get_sra_file=FALSE, sra_files_dir=NULL, n_thread, destdir) {
 	
 	if(!dir.exists(paste0(destdir,"/",srr_id))){

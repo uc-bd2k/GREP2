@@ -25,6 +25,10 @@
 #'
 #' run_tximport(srr_id="SRR6324192", species="human", salmon_dir="/home/salmon", countsFromAbundance = "lengthScaledTPM")
 #'
+#' @importFrom AnnotationDbi select
+#'
+#' @import tximport
+#'
 #' @export 
 run_tximport <- function(srr_id, species=c("human","mouse","rat"), salmon_dir, countsFromAbundance = c("no","scaledTPM","lengthScaledTPM")){
 	
@@ -60,9 +64,9 @@ run_tximport <- function(srr_id, species=c("human","mouse","rat"), salmon_dir, c
 
 	cat("generating counts table\n")
 	
-	tx.t <- tximport(files, type = "salmon", tx2gene = tx2gene, txOut=TRUE, importer = read.delim, countsFromAbundance = countsFromAbundance)
+	tx.t <- tximport::tximport(files, type = "salmon", tx2gene = tx2gene, txOut=TRUE, importer = read.delim, countsFromAbundance = countsFromAbundance)
 	if(all(apply(is.na(tx.t$counts), 2, any))==TRUE ) {
-		txi.t <- tximport(files, type = "salmon", tx2gene = tx2gene, txOut=TRUE, importer = read.delim, dropInfReps=TRUE, countsFromAbundance = "no")
+		txi.t <- tximport::tximport(files, type = "salmon", tx2gene = tx2gene, txOut=TRUE, importer = read.delim, dropInfReps=TRUE, countsFromAbundance = "no")
 	} else {
 		txi.t <- tx.t
 	}

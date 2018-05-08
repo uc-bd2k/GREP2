@@ -19,7 +19,7 @@
 #'
 #' run_fastqc(destdir="/home", fastq_dir="/home/SRR6324192/", n_thread=2)
 #'
-#' @export
+#' @export 
 run_multiqc <- function(fastqc_dir, salmon_dir, destdir) {
 
 	setwd(destdir)

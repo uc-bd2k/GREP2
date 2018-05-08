@@ -20,7 +20,7 @@
 #'
 #' get_srr(srr_id="SRR6324192", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public", ascp_path="/home/user/.aspera/")
 #'
-#' @export 
+#' @export
 get_srr <- function(srr_id, destdir, ascp=TRUE, prefetch_workspace, ascp_path) {
 		
 	if(ascp){

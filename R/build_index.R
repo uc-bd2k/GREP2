@@ -17,7 +17,7 @@
 #'
 #' build_index(species="human", kmer=31, destdir="/home", ens_release=92)
 #'
-#' @export 
+#' @export
 build_index <- function(species=c("human","mouse","rat"), kmer=31, destdir, ens_release=92){
 	
 	setwd(destdir)

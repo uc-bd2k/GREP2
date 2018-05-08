@@ -29,7 +29,7 @@
 #'
 #' trim_fastq(srr_id="SRR6324192", fastq_dir="/home", instrument="HiSeq", trimmomatic_path="/home/user", library_layout="SINGLE", n_thread=2)
 #' 
-#' @export 
+#' @export
 trim_fastq <- function(srr_id, fastq_dir, instrument, trimmomatic_path, library_layout=c("SINGLE","PAIRED"), n_thread){
 
 	#path.adaptors="/home/naim/Trimmomatic-0.36/adapters/"

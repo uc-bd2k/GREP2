@@ -1,8 +1,7 @@
 #' A complete pipeline to process GEO RNA-seq data
 #'
-#' \code{process_geo_rnaseq} downloads and processes GEO RNA-seq data for a given GEO series accession ID.
-#'
-#' \code{process_geo_rnaseq} filters metadata for RNA-seq samples only. We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping. 
+#' \code{process_geo_rnaseq} downloads and processes GEO RNA-seq data for a given GEO series accession ID. It filters metadata for RNA-seq samples only. 
+#' We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping. 
 #'
 #' @param geo_series_acc GEO series accession ID.
 #' @param destdir directory where all the results will be saved.
@@ -35,11 +34,18 @@
 #' improve gene-level inferences. F1000Research.
 #' \url{http://dx.doi.org/10.12688/f1000research.7563.1}
 #' 
+#' Philip Ewels, Måns Magnusson, Sverker Lundin, and Max Käller (2016):
+#' MultiQC: summarize analysis results for multiple tools and samples 
+#' in a single report. Bioinformatics, 32(19), 3047-3048.
+#' \url{https://doi.org/10.1093/bioinformatics/btw354} 
+#'
 #' @examples
 #'
 #' process_geo_rnaseq (geo_series_acc="GSE107363", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public",
-#' ascp_path="/home/user/.aspera/", get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL, index_dir="/home/human_transcripts_release92_index/",
+#' ascp_path="/home/user/.aspera/", get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL, index_dir="/home/human_transcripts_release91_index/",
 #' species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
+#'
+#' @importFrom parallel mclapply
 #'
 #' @export 
 process_geo_rnaseq <- function(geo_series_acc, 
@@ -61,7 +67,7 @@ process_geo_rnaseq <- function(geo_series_acc,
 	setwd(destdir)
 	
 	cat(paste("Downloading metadata... ",Sys.time(),"\n",sep=""))
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_metadata.R")
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_metadata.R")
 	metadata <- get_metadata(geo_series_acc)
 	metadata$metadata_geo <- metadata$metadata_geo[which(metadata$metadata_geo$library_strategy=="RNA-Seq"),]
 	metadata$metadata_sra <- metadata$metadata_sra[which(metadata$metadata_sra$LibraryStrategy=="RNA-Seq"),]
@@ -75,38 +81,38 @@ process_geo_rnaseq <- function(geo_series_acc,
 
 	if(get_sra_file) {
 		cat(paste("Downloading SRA files... ",Sys.time(),"\n",sep=""))
-		source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_srr.R")
-		mclapply(1: length(srr_id),function(i) {
+		#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_srr.R")
+		parallel::mclapply(1: length(srr_id),function(i) {
 			get_srr(srr_id[i], destdir, ascp, prefetch_workspace, ascp_path)
 		}, mc.cores=n_thread)
 	}
 	
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_fastq.R")
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/get_fastq.R")
 	if(ascp){
 		cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
 		sra_files_dir <- paste0(prefetch_workspace,"/sra/")
-		mclapply(1: length(srr_id),function(i) {
+		parallel::mclapply(1: length(srr_id),function(i) {
 			get_fastq(srr_id[i], library_layout[i], get_sra_file, sra_files_dir, n_thread, destdir)
 		}, mc.cores=n_thread)
 	} else {
 		cat(paste("Step 3: Downloading fastq files... ",Sys.time(),"\n",sep=""))
-		mclapply(1: length(srr_id),function(i) {
+		parallel::mclapply(1: length(srr_id),function(i) {
 			sra_files_dir <- paste0(destdir,"/",srr_id[i])
 			get_fastq(srr_id[i], library_layout[i], get_sra_file, sra_files_dir, n_thread, destdir)
 		}, mc.cores=n_thread)
 	}
 
 	cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_fastqc.R")
-	mclapply(1: length(srr_id),function(i) {
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_fastqc.R")
+	parallel::mclapply(1: length(srr_id),function(i) {
 		fastq_dir <- paste0(destdir,"/",srr_id[i])
 		run_fastqc(destdir, fastq_dir, n_thread )
 	}, mc.cores=n_thread)
 
 	if(trim_fastq){
 		cat(paste("Trimming fastq... ",Sys.time(),"\n",sep=""))
-		source("/opt/raid10/genomics/naim/myGithub/GREP2/R/trim_fastq.R")
-		mclapply(1: length(srr_id),function(i) {
+		#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/trim_fastq.R")
+		parallel::mclapply(1: length(srr_id),function(i) {
 			fastq_dir <- paste0(destdir,"/",srr_id[i])
 			trim_fastq (srr_id[i], fastq_dir, instrument, trimmomatic_path, library_layout[i], n_thread)
 		}, mc.cores=n_thread)
@@ -114,19 +120,19 @@ process_geo_rnaseq <- function(geo_series_acc,
 	use_trimmed_fastq= if(trim_fastq){TRUE} else {FALSE}
 	
 	cat(paste("Run Salmon and get counts... ",Sys.time(),"\n",sep=""))
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_salmon.R")
-	mclapply(1: length(srr_id),function(i) {
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_salmon.R")
+	parallel::mclapply(1: length(srr_id),function(i) {
 		fastq_dir <- paste0(destdir,"/",srr_id[i])
 		run_salmon (srr_id[i], library_layout[i], index_dir, destdir, fastq_dir, use_trimmed_fastq, n_thread)
 	}, mc.cores=n_thread)
 	
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_tximport.R")	
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_tximport.R")	
 	salmon_dir <- paste0(destdir,"/salmon/")
 	counts_data_list <- run_tximport (srr_id, species, salmon_dir, countsFromAbundance)		
 	save(counts_data_list, file="counts_data_list.RData")
 	
 	cat(paste("Run MultiQC... ",Sys.time(),"\n",sep=""))
-	source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_multiqc.R")
+	#source("/opt/raid10/genomics/naim/myGithub/GREP2/R/run_multiqc.R")
 	fastqc_dir <- paste0(destdir,"/fastqc/")
 	run_multiqc (fastqc_dir, salmon_dir, destdir)
 	

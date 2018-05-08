@@ -15,8 +15,8 @@
 #' @export
 run_fastqc <- function(destdir, fastq_dir, n_thread ) {
 	
+	cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
 	setwd(destdir)
-	#fastqc_path = "/opt/raid10/genomics/naim/Lincs/softwares/FastQC/fastqc"
 	fastq_files = list.files(fastq_dir, pattern=".fastq$", full=TRUE)
 	
 	if(!dir.exists("fastqc")){

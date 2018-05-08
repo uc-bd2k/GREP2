@@ -8,11 +8,17 @@
 #'
 #' get_metadata(geo_series_acc="GSE107363")
 #' 
+#' @importFrom rentrez entrez_search
+#' @importFrom XML xmlRoot xmlValue
+#' @importFrom RCurl getURL
+#' @importFrom GEOquery getGEO
+#' @importFrom Biobase phenoData pData 
+#'
 #' @export 
 get_metadata <- function(geo_series_acc) {
 	
 	geo_id <- rentrez::entrez_search(db="gds",term=geo_series_acc)$ids[[1]]
-	geo_summary <- XML::xmlRoot(xmlTreeParse(getURL(paste0("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=", geo_id))))
+	geo_summary <- XML::xmlRoot(xmlTreeParse(RCurl::getURL(paste0("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=", geo_id))))
 	sra_study_acc <- XML::xmlValue(getNodeSet(geo_summary[[1]], "//DocSum//Item//Item//Item[@Name='TargetObject']")[1][[1]])
 
 	# GEO metadata
@@ -27,10 +33,10 @@ get_metadata <- function(geo_series_acc) {
 			system(paste0("wget ", myurl))
 		}
 	
-		geo_list_prim <- lapply(lapply(nm, function(x) getGEO(geo_series_acc, filename = paste0("./",geo_series_acc,"-",x ,"_series_matrix.txt.gz"), 
+		geo_list_prim <- lapply(lapply(nm, function(x) GEOquery::getGEO(geo_series_acc, filename = paste0("./",geo_series_acc,"-",x ,"_series_matrix.txt.gz"), 
 											GSEMatrix=TRUE,destdir = getwd() ,getGPL=FALSE)
 										),
-									function(x) pData(phenoData(x))
+									function(x) Biobase::pData(phenoData(x))
 								)
 		geo_list_sec <- lapply(geo_list_prim, function(x) x[,Reduce(intersect, lapply(geo_list_prim, function(x) colnames(x)))])
 		geo_df <- do.call(rbind, geo_list_sec)

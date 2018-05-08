@@ -1,0 +1,39 @@
+---
+title: "Process GEO RNA-seq data using `GREP2`"
+author:
+- name: "Naim Mahi"
+  affiliation: 
+  - Department of Environmental Health, Division of Biostatistics and Bioinformatics, University of Cincinnati
+- name: "Mario Medvedovic"
+  affiliation:
+  - Department of Environmental Health, Division of Biostatistics and Bioinformatics, University of Cincinnati
+
+date: "`r Sys.Date()`"
+package: "`r packageVersion('GREP2')`"
+output: rmarkdown::html_document:
+  highlight: pygments
+  toc: true
+bibliography: ref.bib  
+vignette: >
+  %\VignetteIndexEntry{Process GEO RNA-seq data using GREP2}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## GREP2 pipeline workflow
+
+To consistently process GEO RNA-seq datasets through a robust and uniform system, we have built GEO RNA-seq evenly processing pipeline (GREP2). The whole processing workflow can be summarized in the following steps:
+
+1. The pipeline starts with a valid GEO series accession ID. Currently the pipeline works for human, mouse, and rat species. We then retrieve metadata for the GEO series accession using Bioconductor package GEOquery [@davis2007geoquery]. We also download metadata file from the sequence read archive (SRA) to get corresponding run information.
+
+2. Download corresponding experiment run files from the SRA using `ascp` utility of [Aspera Connect](https://www.asperasoft.com). All the downloaded files are stored in the local repository until processed. You can skip this step by downloading fastq files directly.
+
+3. Convert SRA files to fastq format using [NCBI SRA toolkit](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) or download fastq files directly. 
+
+4. Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on each fastq file to generate quality control (QC) reports.
+
+5. Remove adapter sequences if necessary using Trimmomatic [@bolger2014trimmomatic].
+
+6. Quantify transcript abundances using Salmon [@patro2017salmon]. Transcript level estimates are then summarized to gene level using Bioconductor package tximport [@soneson2015differential]. We obtained gene annotation for Homo sapiens (GRCh38), Mus musculus (GRCm38), and Rattus norvegicus (Rnor_6.0) from Ensemble (release-91).
+
+7. Compile FastQC reports and Salmon log files into a single interactive HTML report using MultiQC [@ewels2016multiqc].
+
