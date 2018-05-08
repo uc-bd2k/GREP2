@@ -1,5 +1,5 @@
 Package: GREP2
-Title: GEO RNA-seq Evenly Processing Pipeline
+Title: GEO RNA-seq Experiments Processing Pipeline
 Version: 0.0.0.99
 Author: Naim Mahi [cre,aut], Mario Medvedovic [aut, ctb]
 Maintainer: Naim Mahi <naim.al.mahi@gmail.com>
