@@ -14,10 +14,7 @@
 #' @return SRA run accession file with extension ".sra". If you use \code{ascp=TRUE}, then downloaded files will be saved under \code{'/prefetch_workspace/sra'} directory. 
 #' If \code{ascp=FALSE}, then files will be saved in the \code{'destdir'}
 #' 
-#' @references 
-#' 
 #' @examples
-#'
 #' get_srr(srr_id="SRR6324192", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public", ascp_path="/home/user/.aspera/")
 #'
 #' @export

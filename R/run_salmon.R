@@ -1,6 +1,6 @@
 #' Quantify transcript abundances using Salmon
 #'
-#' \code{run_salmon} wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
+#' \code{run_salmon} is a wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
 #' For index building see \link[build_index]{build_index}. 
 #'
 #' \code{run_salmon} We use default options of Salmon. This function works for a single sample. You can use this function in a loop for multiple samples. 
@@ -8,7 +8,7 @@
 #'
 #' @param srr_id SRA run accession ID.
 #' @param library_layout layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.
-#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[build_index]{build_index}.
+#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \\link[GREP2]{build_index}.
 #' @param destdir directory where all the results will be saved.
 #' @param fastq_dir directory of the fastq files.
 #' @param use_trimmed_fastq logical, whether to use trimmed fastq files. 
@@ -33,7 +33,6 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#'
 #' run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="/home/human_transcripts_release92_index/", destdir="/home",
 #' fastq_dir="/home/SRR6324192/", use_trimmed_fastq=FALSE, other_opts=NULL, n_thread=2 )
 #'

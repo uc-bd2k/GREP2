@@ -1,7 +1,7 @@
 #' Wrapper function to run tximport
 #'
 #' \code{run_tximport} function runs tximport on transcript level abundances from Salmon to summarize to gene level. See Bioconductor package
-#' \code{'tximport'} for details.
+#' \link[tximport]{tximport} for details.
 #'
 #' We use Ensembl annotation for both genes and transcripts. 
 #' 
@@ -10,9 +10,9 @@
 #' @param salmon_dir directory where salmon files are saved.
 #' @param countsFromAbundance whether to generate counts based on abundance. Available options are: \code{'no'}, 
 #' \code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
-#' \code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \code{'tximport'} for further details.
+#' \code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size).
 #'
-#' @return a list of gene and transcript level estimated counts summarized by Bioconductor package \code{'tximport'}.
+#' @return a list of gene and transcript level estimated counts.
 #' 
 #' @references 
 #' 
@@ -22,7 +22,6 @@
 #' \url{http://dx.doi.org/10.12688/f1000research.7563.1}
 #' 
 #' @examples
-#'
 #' run_tximport(srr_id="SRR6324192", species="human", salmon_dir="/home/salmon", countsFromAbundance = "lengthScaledTPM")
 #'
 #' @importFrom AnnotationDbi select

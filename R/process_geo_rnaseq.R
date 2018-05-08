@@ -13,11 +13,11 @@
 #' @param get_sra_file logical, whether to download SRA file first and get fastq files afterwards.
 #' @param trim_fastq logical, whether to trim fastq file. 
 #' @param trimmomatic_path path to Trimmomatic software.
-#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[build_index]{build_index}.
+#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.
 #' @param countsFromAbundance whether to generate counts based on abundance. Available options are: \code{'no'}, 
 #' \code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
-#' \code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \code{'tximport'} for further details.
+#' \code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \link[tximport]{tximport} for further details.
 #' @param n_thread number of cores to use.
 #'
 #' @return a list of metadata from GEO and SRA saved in the \code{destdir}. Another list of gene and transcript level estimated counts summarized by 
@@ -40,7 +40,6 @@
 #' \url{https://doi.org/10.1093/bioinformatics/btw354} 
 #'
 #' @examples
-#'
 #' process_geo_rnaseq (geo_series_acc="GSE107363", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public",
 #' ascp_path="/home/user/.aspera/", get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL, index_dir="/home/human_transcripts_release91_index/",
 #' species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)

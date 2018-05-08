@@ -1,7 +1,7 @@
 #' Download fastq files
 #'
 #' \code{get_fastq} downloads fastq files using SRA toolkit. 
-#' We recommend using Aspera for fast downloading. You need to install Aspera for using \code{ascp} option. 
+#' We recommend using Aspera for fast downloading. You need to install Aspera(\url{http://www.asperasoft.com/}) for using \code{ascp} option. 
 #'
 #' @param srr_id SRA run accession ID.
 #' @param library_layout layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.
@@ -13,7 +13,6 @@
 #' @return A single fastq file will be generated for SINGLE end reads and two files for PAIRED end reads.
 #' 
 #' @examples
-#'
 #' get_fastq(srr_id="SRR6324192", library_layout="SINGLE", get_sra_file=FALSE, sra_files_dir=NULL, n_thread=2, destdir="/home")
 #'
 #' @export 
