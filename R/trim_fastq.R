@@ -26,6 +26,7 @@
 #' \url{https://doi.org/10.1093/bioinformatics/btu170}
 #' 
 #' @examples
+#' get_metadata(geo_series_acc="GSE107363")
 #' \dontrun{
 #' trim_fastq(srr_id="SRR6324192", fastq_dir=".", instrument="HiSeq", 
 #' trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE", n_thread=2)

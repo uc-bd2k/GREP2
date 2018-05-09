@@ -22,6 +22,7 @@
 #' \url{http://dx.doi.org/10.12688/f1000research.7563.1}
 #' 
 #' @examples
+#' get_metadata(geo_series_acc="GSE107363")
 #' \dontrun{
 #' run_tximport(srr_id="SRR6324192", species="human", salmon_dir="path_to_salmon_files_dir", 
 #' countsFromAbundance = "lengthScaledTPM")
@@ -90,7 +91,7 @@ run_tximport <- function(srr_id, species=c("human","mouse","rat"), salmon_dir, c
 	colnames(transcript_counts) <- srr_id
 	
 	annot_genes <- AnnotationDbi::select(gene_ensembl(species),keys=rownames(gene_counts),columns=c("SYMBOL","SYMBOL", "GENENAME"),keytype="ENSEMBL")	
-	annot_genes2 <- annot_genes[match(rownames(gene_counts), annot_genes[,1]),,drop=F]
+	annot_genes2 <- annot_genes[match(rownames(gene_counts), annot_genes[,1]),,drop=FALSE]
 	gene_counts <- cbind(annot_genes2,gene_counts)
 	
 	counts <- list(gene_counts=gene_counts, transcript_counts=transcript_counts, tximport_gene_data=txi.g, tximport_transcript_data=txi.t)

@@ -28,9 +28,10 @@ A single fastq file will be generated for SINGLE end reads and two files for PAI
 We recommend using Aspera for fast downloading. You need to install Aspera(\url{http://www.asperasoft.com/}) for using \code{ascp} option.
 }
 \examples{
+get_metadata(geo_series_acc="GSE107363")
 \dontrun{
 get_fastq(srr_id="SRR6324192", library_layout="SINGLE", get_sra_file=FALSE, 
-sra_files_dir=NULL, n_thread=2, destdir=".")
+sra_files_dir=NULL, n_thread=2, destdir="/mnt/raid/test")
 }
 
 }

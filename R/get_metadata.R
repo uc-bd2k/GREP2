@@ -5,7 +5,6 @@
 #' @return a list of GEO and SRA metadata. 
 #' 
 #' @examples
-#'
 #' get_metadata(geo_series_acc="GSE107363")
 #' 
 #' @importFrom rentrez entrez_search
@@ -23,7 +22,7 @@ get_metadata <- function(geo_series_acc) {
 	sra_study_acc <- XML::xmlValue(XML::getNodeSet(geo_summary[[1]], "//DocSum//Item//Item//Item[@Name='TargetObject']")[1][[1]])
 
 	# GEO metadata
-	x <- GEOquery::getGEO(geo_series_acc, AnnotGPL=F,GSEMatrix=FALSE,destdir = getwd() ,getGPL=FALSE)
+	x <- GEOquery::getGEO(geo_series_acc, AnnotGPL=FALSE,GSEMatrix=FALSE,destdir = getwd() ,getGPL=FALSE)
 	nm <- names(x@gpls)
 	stub=gsub("\\d{1,3}$", "nnn", geo_series_acc, perl = TRUE)
 	gseurl <- "https://ftp.ncbi.nlm.nih.gov/geo/series/%s/%s/matrix/%s"

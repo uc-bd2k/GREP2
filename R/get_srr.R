@@ -15,9 +15,10 @@
 #' If \code{ascp=FALSE}, then files will be saved in the \code{'destdir'}
 #' 
 #' @examples
+#' get_metadata(geo_series_acc="GSE107363")
 #' \dontrun{
-#' get_srr(srr_id="SRR6324192", destdir=".", ascp=TRUE, 
-#' prefetch_workspace="path_to_prefetch_workspace", ascp_path="path_to_aspera")
+#' get_srr(srr_id="SRR6324192", destdir="/mnt/raid/test", ascp=TRUE, 
+#' prefetch_workspace="/mnt/raid/test/prefetch_workspace", ascp_path="~/.aspera")
 #' }
 #'
 #' @export

@@ -20,8 +20,9 @@ HTML report.
 \code{run_fastqc} generates a single HTML report from the fastQC reports and salmon read mapping results using MultiQC.
 }
 \examples{
+get_metadata(geo_series_acc="GSE107363")
 \dontrun{
-run_fastqc(destdir=".", fastq_dir="path_to_fatsq_dir", n_thread=2)
+run_fastqc(destdir="/mnt/raid/test", fastq_dir="path_to_fatsq_dir", n_thread=2)
 }
 
 }

@@ -7,6 +7,8 @@
 #' @param destdir directory to save index files.
 #' @param ens_release version of Ensembl release.
 #'
+#' @return directory of index files
+#' 
 #' @references 
 #' 
 #' Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and Carl Kingsford (2017):
@@ -14,9 +16,7 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' \dontrun{
-#' build_index(species="human", kmer=31, destdir=".", ens_release=92)
-#' }
+#' build_index(species="rat", kmer=31, destdir="/mnt/raid/test", ens_release=92)
 #'
 #' @export
 build_index <- function(species=c("human","mouse","rat"), kmer=31, destdir, ens_release=92){
