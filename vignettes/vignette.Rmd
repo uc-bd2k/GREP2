@@ -1,8 +1,8 @@
 ---
-title: "Importing transcript abundance datasets with tximport"
-author: "Michael I. Love, Charlotte Soneson, Mark D. Robinson"
+title: "Process GEO RNA-seq data using GREP2"
+author: "Naim Mahi and Mario Medvedovic"
 date: "`r Sys.Date()`"
-package: "`r packageVersion('tximport')`"
+package: "`r packageVersion('GREP2')`"
 output:
   rmarkdown::html_document:
     highlight: pygments
@@ -10,7 +10,7 @@ output:
     fig_width: 5
 bibliography: ref.bib
 vignette: >
-  %\VignetteIndexEntry{Importing transcript abundance datasets with tximport}
+  %\VignetteIndexEntry{Process GEO RNA-seq data using GREP2}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -30,5 +30,18 @@ To consistently process GEO RNA-seq datasets through a robust and uniform system
 
 6. Quantify transcript abundances using Salmon [@patro2017salmon]. Transcript level estimates are then summarized to gene level using Bioconductor package tximport [@soneson2015differential]. We obtained gene annotation for Homo sapiens (GRCh38), Mus musculus (GRCm38), and Rattus norvegicus (Rnor_6.0) from Ensemble (release-91).
 
-7. Compile FastQC reports and Salmon log files into a single interactive HTML report using MultiQC [@ewels2016multiqc].
+7. Compile FastQC reports and Salmon log files into a single interactive HTML report using MultiQC [@ewels2016multiqc].  
+
+You can run individual functions for each step or run the whole pipeline using `process_geo_rnaseq` function. We will process a small dataset from GEO ( [GSE107363](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107363) ) using this function.
+  
+```{r}
+options(warn=-1)
+library(GREP2)
+process_geo_rnaseq (geo_series_acc="GSE107363", destdir=".", ascp=TRUE, 
+                    prefetch_workspace="./prefetch_workspace",ascp_path="~/.aspera",
+                    get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="./human_transcripts_release92_index",
+                    other_opts=NULL,species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
+```
+
+## References
 

@@ -128,7 +128,7 @@ process_geo_rnaseq <- function(geo_series_acc,
 	
 	salmon_dir <- paste0(destdir,"/salmon/")
 	counts_data_list <- run_tximport (srr_id, species, salmon_dir, countsFromAbundance)		
-	save(counts_data_list, file="counts_data_list.RData")
+	save(counts_data_list, file=paste0(destdir,"/counts_data_list.RData"))
 	
 	cat(paste("Running MultiQC... ",Sys.time(),"\n",sep=""))
 	fastqc_dir <- paste0(destdir,"/fastqc/")
