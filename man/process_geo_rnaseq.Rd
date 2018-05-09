@@ -6,9 +6,9 @@
 \usage{
 process_geo_rnaseq(geo_series_acc, destdir, ascp = TRUE, prefetch_workspace,
   ascp_path, get_sra_file = FALSE, trim_fastq = FALSE,
-  trimmomatic_path = NULL, index_dir, species = c("human", "mouse", "rat"),
-  countsFromAbundance = c("no", "scaledTPM", "lengthScaledTPM"),
-  n_thread = 2)
+  trimmomatic_path = NULL, index_dir, other_opts = NULL,
+  species = c("human", "mouse", "rat"), countsFromAbundance = c("no",
+  "scaledTPM", "lengthScaledTPM"), n_thread = 2)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
@@ -30,6 +30,8 @@ A new window will pop-up and under the \code{'Workspace Name'}, you will find th
 \item{trimmomatic_path}{path to Trimmomatic software.}
 
 \item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.}
+
+\item{other_opts}{options other than default to use for read mapping. See Salmon documentation for the available options.}
 
 \item{species}{name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.}
 

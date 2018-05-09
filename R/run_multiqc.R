@@ -23,7 +23,7 @@
 #' @export 
 run_multiqc <- function(fastqc_dir, salmon_dir, destdir) {
 
-	setwd(destdir)
+	#setwd(destdir)
 	cat(paste("Creating MultiQC report.\n",sep=""))
 	system(paste0("multiqc ",fastqc_dir," ",salmon_dir," -o ",destdir))
 	system(paste0("sed -i 's/A modular tool to aggregate results from bioinformatics analyses across many samples into a single report./''/g' ", destdir,"/","multiqc_report.html"))	

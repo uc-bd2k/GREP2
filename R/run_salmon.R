@@ -12,7 +12,7 @@
 #' @param destdir directory where all the results will be saved.
 #' @param fastq_dir directory of the fastq files.
 #' @param use_trimmed_fastq logical, whether to use trimmed fastq files. 
-#' @param other_opts Other options to use. See Salmon documentation for the available options.
+#' @param other_opts other options to use. See Salmon documentation for the available options.
 #' @param n_thread number of cores to use.
 #'
 #' @return The following items will be returned and saved in the salmon directory:
@@ -42,33 +42,33 @@
 #' @export 
 run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"), index_dir, destdir, fastq_dir, use_trimmed_fastq=FALSE, other_opts=NULL, n_thread ) {
 
-	setwd(destdir)
-	if(!dir.exists("salmon")){
+	#setwd(destdir)
+	if(!dir.exists(paste0(destdir,"/salmon"))){
 		system(paste0("mkdir ",destdir,"/salmon"))
 	}
-	setwd(paste0(destdir,"/salmon/"))
+	#setwd(paste0(destdir,"/salmon/"))
 	library_layout <- match.arg(library_layout, c("SINGLE","PAIRED"))
 
 	if (library_layout=="SINGLE") {
 		if(use_trimmed_fastq){
-			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, "_trimmed.fastq -o ", srr_id,"_transcripts_quant"))			
+			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, "_trimmed.fastq -o ",destdir,"/salmon/", srr_id,"_transcripts_quant"))			
 		} else {			
-			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, "_pass.fastq -o ",srr_id,"_transcripts_quant"))
+			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, "_pass.fastq -o ",destdir,"/salmon/",srr_id,"_transcripts_quant"))
 		}			
 	} else {
 		if(use_trimmed_fastq){
 			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id, "_trimmed_1.fastq ", "-2 ",
-				fastq_dir,"/", srr_id, "_trimmed_2.fastq -o ", srr_id,"_transcripts_quant")
+				fastq_dir,"/", srr_id, "_trimmed_2.fastq -o ",destdir,"/salmon/", srr_id,"_transcripts_quant")
 			)		
 		} else {
 			system(paste0("salmon quant -i ",index_dir, " -p ", n_thread, " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id, "_pass_1.fastq ", "-2 ",
-				fastq_dir,"/", srr_id, "_pass_2.fastq -o ", srr_id,"_transcripts_quant")
+				fastq_dir,"/", srr_id, "_pass_2.fastq -o ",destdir,"/salmon/", srr_id,"_transcripts_quant")
 			)
 		}		
 	}
-	setwd(paste0(destdir,"/salmon/",srr_id,"_transcripts_quant"))
-	if (file.exists("./quant.sf")) {
-		system(paste("cat quant.sf| sed -E 's/\\.[0-9]+//' > ",srr_id,"_quant_new.sf", sep=""))
+	#setwd(paste0(destdir,"/salmon/",srr_id,"_transcripts_quant"))
+	if (file.exists(destdir,"/salmon/",srr_id,"_transcripts_quant/quant.sf")) {
+		system(paste("cat ",destdir,"/salmon/",srr_id,"_transcripts_quant/quant.sf","| sed -E 's/\\.[0-9]+//' > ",destdir,"/salmon/",srr_id,"_transcripts_quant","/",srr_id,"_quant_new.sf", sep=""))
 	} else {
 		cat("quant.sf doesn't exist. Processing next sample.")
 	}

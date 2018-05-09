@@ -34,7 +34,6 @@
 #' @export
 trim_fastq <- function(srr_id, fastq_dir, instrument, trimmomatic_path, library_layout=c("SINGLE","PAIRED"), n_thread){
 
-	#path.adaptors="/home/naim/Trimmomatic-0.36/adapters/"
 	adapters<- function(instrument) {
 		if (grepl("HiSeq|MiSeq",instrument)) {
 			return("TruSeq3")
@@ -51,19 +50,19 @@ trim_fastq <- function(srr_id, fastq_dir, instrument, trimmomatic_path, library_
 	}
 
 	library_layout <- match.arg(library_layout, c("SINGLE","PAIRED"))
-	setwd(fastq_dir)
+	#setwd(fastq_dir)
 	if (library_layout=="SINGLE") {
-		fq = paste(srr_id,"*.fastq",sep="")
-		fq_se =  paste(srr_id,"_trimmed.fastq",sep="")
+		fq = paste(fastq_dir,"/",srr_id,"*.fastq",sep="")
+		fq_se =  paste(fastq_dir,"/",srr_id,"_trimmed.fastq",sep="")
 		system(paste0("java -jar /home/naim/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 -threads ",n_thread," ",fq, " ", fq_se, " ",	"ILLUMINACLIP:",
 			trimmomatic_path, "/adapters/", adapters(instrument),"-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"))
 	} else {
-		fq1 = paste(srr_id,"*_1.fastq",sep="")
-		fq2 = paste(srr_id,"*_2.fastq",sep="")
-		fq1_paired = paste(srr_id,"_1_trimmed.fastq",sep="")
-		fq2_paired = paste(srr_id,"_2_trimmed.fastq",sep="")
-		fq1_unpaired = paste(srr_id,"_1_unpaired.fastq",sep="")
-		fq2_unpaired = paste(srr_id,"_2_unpaired.fastq",sep="")
+		fq1 = paste(fastq_dir,"/",srr_id,"*_1.fastq",sep="")
+		fq2 = paste(fastq_dir,"/",srr_id,"*_2.fastq",sep="")
+		fq1_paired = paste(fastq_dir,"/",srr_id,"_1_trimmed.fastq",sep="")
+		fq2_paired = paste(fastq_dir,"/",srr_id,"_2_trimmed.fastq",sep="")
+		fq1_unpaired = paste(fastq_dir,"/",srr_id,"_1_unpaired.fastq",sep="")
+		fq2_unpaired = paste(fastq_dir,"/",srr_id,"_2_unpaired.fastq",sep="")
 		
 		system(paste0("java -jar /home/naim/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 -threads ",n_thread," ",
 		fq1," ",fq2," ",fq1_paired," ",fq1_unpaired," ",fq2_paired," ",fq2_unpaired," ","ILLUMINACLIP:",

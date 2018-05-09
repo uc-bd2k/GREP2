@@ -14,6 +14,7 @@
 #' @param trim_fastq logical, whether to trim fastq file. 
 #' @param trimmomatic_path path to Trimmomatic software.
 #' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.
+#' @param other_opts options other than default to use for read mapping. See Salmon documentation for the available options.
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.
 #' @param countsFromAbundance whether to generate counts based on abundance. Available options are: \code{'no'}, 
 #' \code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
@@ -59,7 +60,7 @@ process_geo_rnaseq <- function(geo_series_acc,
 								get_sra_file=FALSE, 
 								trim_fastq=FALSE, 
 								trimmomatic_path=NULL, 
-								index_dir, 
+								index_dir, other_opts=NULL,
 								species=c("human","mouse","rat"), 
 								countsFromAbundance = c("no","scaledTPM","lengthScaledTPM"), 
 								n_thread=2) {
@@ -97,7 +98,7 @@ process_geo_rnaseq <- function(geo_series_acc,
 			get_fastq(srr_id[i], library_layout[i], get_sra_file, sra_files_dir, n_thread, destdir)
 		}, mc.cores=n_thread)
 	} else {
-		cat(paste("Step 3: Downloading fastq files... ",Sys.time(),"\n",sep=""))
+		cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
 		parallel::mclapply(1: length(srr_id),function(i) {
 			sra_files_dir <- paste0(destdir,"/",srr_id[i])
 			get_fastq(srr_id[i], library_layout[i], get_sra_file, sra_files_dir, n_thread, destdir)
@@ -119,17 +120,17 @@ process_geo_rnaseq <- function(geo_series_acc,
 	}
 	use_trimmed_fastq= if(trim_fastq){TRUE} else {FALSE}
 	
-	cat(paste("Run Salmon and get counts... ",Sys.time(),"\n",sep=""))
+	cat(paste("Running Salmon and tximport... ",Sys.time(),"\n",sep=""))
 	parallel::mclapply(1: length(srr_id),function(i) {
 		fastq_dir <- paste0(destdir,"/",srr_id[i])
-		run_salmon (srr_id[i], library_layout[i], index_dir, destdir, fastq_dir, use_trimmed_fastq, n_thread)
+		run_salmon (srr_id[i], library_layout[i], index_dir, destdir, fastq_dir, use_trimmed_fastq, other_opts, n_thread)
 	}, mc.cores=n_thread)
 	
 	salmon_dir <- paste0(destdir,"/salmon/")
 	counts_data_list <- run_tximport (srr_id, species, salmon_dir, countsFromAbundance)		
 	save(counts_data_list, file="counts_data_list.RData")
 	
-	cat(paste("Run MultiQC... ",Sys.time(),"\n",sep=""))
+	cat(paste("Running MultiQC... ",Sys.time(),"\n",sep=""))
 	fastqc_dir <- paste0(destdir,"/fastqc/")
 	run_multiqc (fastqc_dir, salmon_dir, destdir)
 	

@@ -24,30 +24,30 @@ get_fastq <- function(srr_id, library_layout=c("SINGLE","PAIRED"), get_sra_file=
 	if(!dir.exists(paste0(destdir,"/",srr_id))){
 		system(paste0("mkdir ",destdir,"/",srr_id))
 	}
-	setwd(paste0(destdir,"/",srr_id))
+	#setwd(paste0(destdir,"/",srr_id))
 	library_layout <- match.arg(library_layout, c("SINGLE","PAIRED"))
 
 	if (library_layout=="SINGLE") {
-		if(length(list.files(pattern=".fastq"))==1) {
+		if(length(list.files(paste0(destdir,"/",srr_id), pattern=".fastq"))==1) {
 			warning("Fastq file exist. Processing next sample...")
 		} else {
 			cat("Converting sra to fastq...")
 			if(get_sra_file){
-				system (paste0("fastq-dump --outdir . --skip-technical  --readids --read-filter pass --dumpbase --split-spot --clip ",
+				system (paste0("fastq-dump --outdir ",destdir,"/",srr_id," --skip-technical  --readids --read-filter pass --dumpbase --split-spot --clip ",
 				sra_files_dir,"/",srr_id,".sra"))
 			} else {
-				system (paste0("fastq-dump --outdir . --skip-technical  --readids --read-filter pass --dumpbase --split-spot --clip ",srr_id))
+				system (paste0("fastq-dump --outdir ",destdir,"/",srr_id," --skip-technical  --readids --read-filter pass --dumpbase --split-spot --clip ",srr_id))
 			}
 		}
 	} else {
-		if(length(list.files(pattern=".fastq"))==2) {
+		if(length(list.files(paste0(destdir,"/",srr_id), pattern=".fastq"))==2) {
 			warning("Fastq file exist. Processing next sample...")
 		} else {
 			cat("Converting sra to fastq...")
 			if(get_sra_file){
-				system (paste0("fastq-dump --outdir . --skip-technical  --readids --read-filter pass --dumpbase --split-files --clip ", sra_files_dir,"/", srr_id,".sra"))
+				system (paste0("fastq-dump --outdir ",destdir,"/",srr_id," --skip-technical  --readids --read-filter pass --dumpbase --split-files --clip ", sra_files_dir,"/", srr_id,".sra"))
 			} else {
-				system (paste0("fastq-dump --outdir . --skip-technical  --readids --read-filter pass --dumpbase --split-files --clip ",srr_id))
+				system (paste0("fastq-dump --outdir ",destdir,"/",srr_id," --skip-technical  --readids --read-filter pass --dumpbase --split-files --clip ",srr_id))
 			}
 		}
 	}
@@ -55,7 +55,7 @@ get_fastq <- function(srr_id, library_layout=c("SINGLE","PAIRED"), get_sra_file=
 	#sra_files_dir,"/",srr_id,".sra"))
 
 	n_fastq <- if(library_layout=="PAIRED") {2} else {1}
-	fastq_dumped <- length(list.files(pattern = "\\.fastq$",recursive=T,full.names=F))
+	fastq_dumped <- length(list.files(paste0(destdir,"/",srr_id), pattern = "\\.fastq$",recursive=T,full.names=F))
 	if(n_fastq!=fastq_dumped){
 		warning("Incomplete fastq download...")
 	} else {

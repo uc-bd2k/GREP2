@@ -20,7 +20,7 @@ run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
 
 \item{use_trimmed_fastq}{logical, whether to use trimmed fastq files.}
 
-\item{other_opts}{Other options to use. See Salmon documentation for the available options.}
+\item{other_opts}{other options to use. See Salmon documentation for the available options.}
 
 \item{n_thread}{number of cores to use.}
 }
