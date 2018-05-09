@@ -1,0 +1,11 @@
+build_index             Build index for mapping using Salmon
+get_fastq               Download fastq files
+get_metadata            Download metadata from GEO and SRA
+get_srr                 Download SRA run files
+process_geo_rnaseq      A complete pipeline to process GEO RNA-seq data
+run_fastqc              QC report for each fastq files using FastQC
+run_multiqc             Generate combined QC report for Salmon and
+                        FastQC
+run_salmon              Quantify transcript abundances using Salmon
+run_tximport            Wrapper function to run tximport
+trim_fastq              Trim fastq files using Trimmomatic

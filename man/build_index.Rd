@@ -17,11 +17,12 @@ build_index(species = c("human", "mouse", "rat"), kmer = 31, destdir,
 \item{ens_release}{version of Ensembl release.}
 }
 \description{
-\code{build_index} build index for read mapping using Salmon.
+\code{build_index} for mapping reads using Salmon.
 }
 \examples{
-
-build_index(species="human", kmer=31, destdir="/home", ens_release=92)
+\dontrun{
+build_index(species="human", kmer=31, destdir=".", ens_release=92)
+}
 
 }
 \references{

@@ -1,0 +1,155 @@
+* using log directory ‘/opt/raid10/genomics/naim/myGithub/GREP2/..Rcheck’
+* using R version 3.4.3 (2017-11-30)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--no-examples’
+* checking for file ‘./DESCRIPTION’ ... OK
+* this is package ‘GREP2’ version ‘0.0.0.99’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... WARNING
+Found the following executable files:
+  .git/objects/03/33c8a65d5fa0ebbbfe99b453b87c4a945d41fa
+  .git/objects/05/ebda3f364e48bd9981c6f26ab730c8284a9242
+  .git/objects/05/fd55b3f122611f407643f839092202a50c550d
+  .git/objects/09/ff891b3ecd38ec9036ff90832186f5f93c6b7b
+  .git/objects/0a/1e616878f3313f6fedca474318c4729f2a8e97
+  .git/objects/10/c4e4979aa09b5c2b7279cd23fd21098f172a4a
+  .git/objects/10/f641540951481fd3eb38d7a91f56bd69623aaf
+  .git/objects/15/1218b60e81faf7fdf2ba55e7cb10fd9f7cf5bd
+  .git/objects/16/c07885586c16dc532fd9a88d48b947178b8d0d
+  .git/objects/17/12721f512baf13efbce68916bbbdbf7338ee32
+  .git/objects/19/f2c54468267193d703e5cce098e5985ee4f2e4
+  .git/objects/1b/d27ef0013b8aba7d59b246edfe4c202c288387
+  .git/objects/1c/4168773d903c8a77c8ae6da22d2e55a34b45ec
+  .git/objects/1f/fc9dc4b05ba5962a2b7321ae229a38ed263f24
+  .git/objects/21/1d241f4bd293e2f4e4e2d918a51abe8830284c
+  .git/objects/2b/4b6f4d43bfa1c6693b7708d3f4c37f6d9fdeb7
+  .git/objects/32/9521f5e228d95e9c6783d748aca2ae6a5a2bc1
+  .git/objects/3e/7285a7a7332bd1eb1c462a867b7be9694e9006
+  .git/objects/42/9351dac3ccd57145d4b97c7375b829f00b9a9c
+  .git/objects/42/ad5b531c4646ba50e9081d84d3e2f9c3b51088
+  .git/objects/43/587d20b583d48c5f1fbe606b4966604720c3f2
+  .git/objects/52/7e64630e4edab292dacfd07b303f1338ff8770
+  .git/objects/55/3f3d701eaf5dcbdc210485180cf1d74dc4d4b7
+  .git/objects/55/588389bb6fefdd13d97b78f6792c330ccf6b88
+  .git/objects/5b/4f5ca3e9c14a347205d0bd9a64455ff66143f7
+  .git/objects/66/42ce9f9d9aad5013410651e4555b49771b82f0
+  .git/objects/67/21af34d24a6da606c09c949782793be906d6d5
+  .git/objects/69/9db69318d5ce29e976fb8268e3eddeb2c32395
+  .git/objects/6e/591fc755126237d2b07fa15f8af8c8ff8d41a4
+  .git/objects/71/ec80eb1901b6a086494aa32884329b72e75aa1
+  .git/objects/78/a7e22e2dcf7d48636b4e0eec36b7d64b2a0177
+  .git/objects/7a/10feb003c4d44bc694196db10cd548ef5a36b0
+  .git/objects/7a/3b1ef0b9bf8efb1a0be5e355105690573502e9
+  .git/objects/7e/561494786feb3708e2d6eb2461f35b5dcab997
+  .git/objects/7e/8d36f22c6aae3699ddde5cebcfc7973d7b23ae
+  .git/objects/7f/4880d114e931493f5045829056092424c59d27
+  .git/objects/86/1389ef827c2958067dad2a03a74783d60ec915
+  .git/objects/86/e02b58a9b92694c7261887e4f10ac8054ac136
+  .git/objects/87/5e65624d52dbc6f4404ecb4c67cfea8ec4842c
+  .git/objects/8d/5277cc5e12be50c170f04992062480bc8e10a5
+  .git/objects/8e/3a7fde5de1cf9444e4ae2ed0d4325cf1a50f05
+  .git/objects/91/114bf2f2bba5e0c5252e75018da19b869776f1
+  .git/objects/94/a9ed024d3859793618152ea559a168bbcbb5e2
+  .git/objects/98/837803b734b909e7384f551c1c911a835e9eb3
+  .git/objects/9b/6df8e92624f5b472461152922368b69dd0f22a
+  .git/objects/9c/c897c5b38b74783633fbe4d736f199ee3c130d
+  .git/objects/a2/624c201067e74d0b8cd41aa85ebd1bd011a197
+  .git/objects/a4/340e1af78248ecfc9bcbb23a4117e4a027b97c
+  .git/objects/a5/878063d30c5a1900514456e1111bd5ac9d870e
+  .git/objects/a5/feebf4906187840f9d658c5867ff23f59670bb
+  .git/objects/a9/d9055b8f6d362bb0ac93fc2ed8118e53ba09bb
+  .git/objects/a9/de7dc2e17f6da27dc54be7d27960739acb9c1e
+  .git/objects/b2/25c4a04b92e0013fc3d6c4957960bc088c10f1
+  .git/objects/b5/f26415e211b0fc33d8c08b57233689bed59c10
+  .git/objects/b8/0827343359c902a50832f9882f04bfa950b134
+  .git/objects/c3/793c5e390bcefba737915c9e29ca7cbb06ecae
+  .git/objects/c6/6d49b583dcad99a3926c50afadeba5799dd5e3
+  .git/objects/cb/a1b6b7a0a292098af0e0b1ce41b7846a59bd5e
+  .git/objects/cf/ddf5e14c2a8dc3cbe1541a254dde6059bfca7b
+  .git/objects/d0/32e3c2b4d5b30cce2360a4c8ce014794153844
+  .git/objects/d4/31b4d8d36afb114c9eeec498f45d34cc89f908
+  .git/objects/d7/db2f8863aa060335e7aa2665d9554a62b45437
+  .git/objects/d9/de1005b6e699637ac83daf2f13e4d84e210c5f
+  .git/objects/da/a507db848b5c2ce2a7e5613317c4afab571f60
+  .git/objects/dd/5085ebb2e5691144cf82426e47bbd7c4f22c19
+  .git/objects/e1/96a97b910555d7f3dcb2040f7916f8b1b98cf7
+  .git/objects/e5/0855322496b3f1ea8dc5de517747ff1c3c392a
+  .git/objects/e9/d22d27de19e50bf9455a5f51da2a7745ebea3e
+  .git/objects/ea/a7b5879900772303aa646f52e36de570730ac4
+  .git/objects/fa/74623bfaaa7865a6289c1761457349612ab27d
+  .git/objects/ff/df72fdb21fcf78d31df3a97b4638b731e53a51
+Source packages should not contain undeclared executable files.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .gitignore
+  ..Rcheck
+  .Rproj.user
+  .git
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GREP2’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Unknown package ‘build_index’ in Rd xrefs
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘ref.bib’, ‘vignette.Rmd’
+* checking examples ... SKIPPED
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+LaTeX errors found:
+! LaTeX Error: File `inconsolata.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.276 ^^M
+         
+!  ==> Fatal error occurred, no output PDF file produced!
+* checking PDF version of manual without hyperrefs or index ... OK
+* DONE
+Status: 5 WARNINGs, 3 NOTEs

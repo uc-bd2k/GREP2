@@ -8,7 +8,7 @@
 #'
 #' @param srr_id SRA run accession ID.
 #' @param library_layout layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.
-#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \\link[GREP2]{build_index}.
+#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.
 #' @param destdir directory where all the results will be saved.
 #' @param fastq_dir directory of the fastq files.
 #' @param use_trimmed_fastq logical, whether to use trimmed fastq files. 
@@ -22,7 +22,7 @@
 #' \item aux_info: This directory will have a number of files (and subfolders) depending on how salmon was invoked.
 #' \item meta_info.json: A JSON file that contains meta information about the run, including stats such as the number of observed and mapped fragments, details of the bias modeling etc. 
 #' \item ambig_info.tsv: This file contains information about the number of uniquely-mapping reads as well as the total number of ambiguously-mapping reads for each transcript. 
-#' \item lib_format_counts.json: This JSON file reports the number of fragments that had at least one mapping compatible with the designated library format, as well as the number that didn’t. 
+#' \item lib_format_counts.json: This JSON file reports the number of fragments that had at least one mapping compatible with the designated library format, as well as the number that didn't. 
 #' \item libParams: The auxiliary directory will contain a text file called flenDist.txt. This file contains an approximation of the observed fragment length distribution.
 #' }
 #' 
@@ -33,8 +33,11 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="/home/human_transcripts_release92_index/", destdir="/home",
-#' fastq_dir="/home/SRR6324192/", use_trimmed_fastq=FALSE, other_opts=NULL, n_thread=2 )
+#' \dontrun{
+#' run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="path_to_index_dir",
+#' destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,
+#' other_opts=NULL, n_thread=2)
+#' }
 #'
 #' @export 
 run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"), index_dir, destdir, fastq_dir, use_trimmed_fastq=FALSE, other_opts=NULL, n_thread ) {

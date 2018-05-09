@@ -1,6 +1,6 @@
 #' Build index for mapping using Salmon
 #'
-#' \code{build_index} build index for read mapping using Salmon.  
+#' \code{build_index} for mapping reads using Salmon.  
 #'
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.
 #' @param kmer k-mer size for indexing. default is 31. See \code{'Salmon'} for details.
@@ -14,8 +14,9 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#'
-#' build_index(species="human", kmer=31, destdir="/home", ens_release=92)
+#' \dontrun{
+#' build_index(species="human", kmer=31, destdir=".", ens_release=92)
+#' }
 #'
 #' @export
 build_index <- function(species=c("human","mouse","rat"), kmer=31, destdir, ens_release=92){

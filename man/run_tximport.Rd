@@ -29,7 +29,10 @@ a list of gene and transcript level estimated counts.
 We use Ensembl annotation for both genes and transcripts.
 }
 \examples{
-run_tximport(srr_id="SRR6324192", species="human", salmon_dir="/home/salmon", countsFromAbundance = "lengthScaledTPM")
+\dontrun{
+run_tximport(srr_id="SRR6324192", species="human", salmon_dir="path_to_salmon_files_dir", 
+countsFromAbundance = "lengthScaledTPM")
+}
 
 }
 \references{

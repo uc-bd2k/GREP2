@@ -20,7 +20,8 @@ HTML report of the fastq files under fastqc directory.
 \code{run_fastqc} HTML report of each fastq files using FastQC. You need to install FastQC from \url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/}
 }
 \examples{
-
-run_fastqc(destdir="/home", fastq_dir="/home/SRR6324192/", n_thread=2)
+\dontrun{
+run_fastqc(destdir=".", fastq_dir="path_to_fastq_dir", n_thread=2)
+}
 
 }

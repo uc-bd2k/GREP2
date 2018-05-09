@@ -48,9 +48,12 @@ Bioconductor package \code{'tximport'} is also saved in the \code{destdir}.
 We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping.
 }
 \examples{
-process_geo_rnaseq (geo_series_acc="GSE107363", destdir="/home", ascp=TRUE, prefetch_workspace="/home/username/ncbi/public",
-ascp_path="/home/user/.aspera/", get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL, index_dir="/home/human_transcripts_release91_index/",
+\dontrun{
+process_geo_rnaseq (geo_series_acc="GSE107363", destdir=".", ascp=TRUE, 
+prefetch_workspace="path_to_prefetch_workspace",ascp_path="path_to_aspera",
+get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="path_to_indexDir",
 species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
+}
 
 }
 \references{
@@ -63,7 +66,7 @@ Differential analyses for RNA-seq: transcript-level estimates
 improve gene-level inferences. F1000Research.
 \url{http://dx.doi.org/10.12688/f1000research.7563.1}
 
-Philip Ewels, Måns Magnusson, Sverker Lundin, and Max Käller (2016):
+Philip Ewels, Mans Magnusson, Sverker Lundin, and Max Kaller (2016):
 MultiQC: summarize analysis results for multiple tools and samples 
 in a single report. Bioinformatics, 32(19), 3047-3048.
 \url{https://doi.org/10.1093/bioinformatics/btw354}

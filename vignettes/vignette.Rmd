@@ -1,21 +1,16 @@
 ---
-title: "Process GEO RNA-seq data using `GREP2`"
-author:
-- name: "Naim Mahi"
-  affiliation: 
-  - Department of Environmental Health, Division of Biostatistics and Bioinformatics, University of Cincinnati
-- name: "Mario Medvedovic"
-  affiliation:
-  - Department of Environmental Health, Division of Biostatistics and Bioinformatics, University of Cincinnati
-
+title: "Importing transcript abundance datasets with tximport"
+author: "Michael I. Love, Charlotte Soneson, Mark D. Robinson"
 date: "`r Sys.Date()`"
-package: "`r packageVersion('GREP2')`"
-output: rmarkdown::html_document:
-  highlight: pygments
-  toc: true
-bibliography: ref.bib  
+package: "`r packageVersion('tximport')`"
+output:
+  rmarkdown::html_document:
+    highlight: pygments
+    toc: true
+    fig_width: 5
+bibliography: ref.bib
 vignette: >
-  %\VignetteIndexEntry{Process GEO RNA-seq data using GREP2}
+  %\VignetteIndexEntry{Importing transcript abundance datasets with tximport}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 

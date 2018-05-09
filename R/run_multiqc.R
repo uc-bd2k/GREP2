@@ -10,14 +10,15 @@
 #' 
 #' @references 
 #' 
-#' Philip Ewels, Måns Magnusson, Sverker Lundin, and Max Käller (2016):
+#' Philip Ewels, Mans Magnusson, Sverker Lundin, and Max Kaller (2016):
 #' MultiQC: summarize analysis results for multiple tools and samples 
 #' in a single report. Bioinformatics, 32(19), 3047-3048.
 #' \url{https://doi.org/10.1093/bioinformatics/btw354}
 #'
 #' @examples
-#'
-#' run_fastqc(destdir="/home", fastq_dir="/home/SRR6324192/", n_thread=2)
+#' \dontrun{
+#' run_fastqc(destdir=".", fastq_dir="path_to_fatsq_dir", n_thread=2)
+#' }
 #'
 #' @export 
 run_multiqc <- function(fastqc_dir, salmon_dir, destdir) {

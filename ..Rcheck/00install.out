@@ -1,0 +1,19 @@
+* installing *source* package ‘GREP2’ ...
+** R
+** preparing package for lazy loading
+Warning in is.na(x[[i]]) :
+  is.na() applied to non-(list or vector) of type 'environment'
+'BiocParallel' did not register default BiocParallelParams:
+  invalid class “MulticoreParam” object: 1: ‘cluster’, ‘.clusterargs’, ‘.uid’, ‘RNGseed’ must be length 1
+invalid class “MulticoreParam” object: 2: ‘.clusterargs’, ‘.controlled’, ‘logdir’, ‘resultdir’ must be length 1
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+Warning in is.na(x[[i]]) :
+  is.na() applied to non-(list or vector) of type 'environment'
+'BiocParallel' did not register default BiocParallelParams:
+  invalid class “MulticoreParam” object: 1: ‘cluster’, ‘.clusterargs’, ‘.uid’, ‘RNGseed’ must be length 1
+invalid class “MulticoreParam” object: 2: ‘.clusterargs’, ‘.controlled’, ‘logdir’, ‘resultdir’ must be length 1
+* DONE (GREP2)

@@ -36,8 +36,10 @@ The following parameters are used as default in the trimmoatic function:
 }
 }
 \examples{
-
-trim_fastq(srr_id="SRR6324192", fastq_dir="/home", instrument="HiSeq", trimmomatic_path="/home/user", library_layout="SINGLE", n_thread=2)
+\dontrun{
+trim_fastq(srr_id="SRR6324192", fastq_dir=".", instrument="HiSeq", 
+trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE", n_thread=2)
+}
 
 }
 \references{

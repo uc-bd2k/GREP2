@@ -9,15 +9,16 @@
 #' @return HTML report of the fastq files under fastqc directory.
 #' 
 #' @examples
-#'
-#' run_fastqc(destdir="/home", fastq_dir="/home/SRR6324192/", n_thread=2)
+#' \dontrun{
+#' run_fastqc(destdir=".", fastq_dir="path_to_fastq_dir", n_thread=2)
+#' }
 #'
 #' @export
 run_fastqc <- function(destdir, fastq_dir, n_thread ) {
 	
 	cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
 	setwd(destdir)
-	fastq_files = list.files(fastq_dir, pattern=".fastq$", full=TRUE)
+	fastq_files = list.files(fastq_dir, pattern=".fastq$", full.names=TRUE)
 	
 	if(!dir.exists("fastqc")){
 		system(paste0("mkdir ",destdir,"/fastqc"))
