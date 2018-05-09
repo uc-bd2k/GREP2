@@ -17,12 +17,12 @@
 run_fastqc <- function(destdir, fastq_dir, n_thread ) {
 	
 	cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
-	setwd(destdir)
+	#setwd(destdir)
 	fastq_files = list.files(fastq_dir, pattern=".fastq$", full.names=TRUE)
 	
 	if(!dir.exists("fastqc")){
 		system(paste0("mkdir ",destdir,"/fastqc"))
 	}
-	setwd(paste0(destdir,"/fastqc/"))
-	system(paste0("fastqc -o ",getwd()," --threads ",n_thread," ", fastq_files))
+	#setwd(paste0(destdir,"/fastqc/"))
+	system(paste0("fastqc -o ",destdir,"/fastqc/ --threads ",n_thread," ", fastq_files))
 }
