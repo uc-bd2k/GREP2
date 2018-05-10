@@ -15,53 +15,74 @@ process_geo_rnaseq(geo_series_acc, destdir, ascp = TRUE, prefetch_workspace,
 
 \item{destdir}{directory where all the results will be saved.}
 
-\item{ascp}{logical, whether to use Aspera connect to download SRA run files. If FALSE, then wget will be used to download files which might be slower than \code{'ascp'} download.}
+\item{ascp}{logical, whether to use Aspera connect to download SRA
+run files. If FALSE, then wget will be used to download files which
+might be slower than \code{'ascp'} download.}
 
-\item{prefetch_workspace}{directory where SRA run files will be downloaded. This parameter is needed when \code{ascp=TRUE}. 
-The location of this directory can be found by going to the aspera directory (/.aspera/connect/bin/) and typing \code{'vdb-config -i'}.
-A new window will pop-up and under the \code{'Workspace Name'}, you will find the location. Usually the default is \code{'/home/username/ncbi/public'}.}
+\item{prefetch_workspace}{directory where SRA run files will be
+downloaded. This parameter is needed when \code{ascp=TRUE}. 
+The location of this directory can be found by going to the aspera
+directory (/.aspera/connect/bin/) and typing \code{'vdb-config -i'}.
+A new window will pop-up and under the \code{'Workspace Name'},
+you will find the location. Usually the default is
+\code{'/home/username/ncbi/public'}.}
 
 \item{ascp_path}{path to the Aspera software.}
 
-\item{get_sra_file}{logical, whether to download SRA file first and get fastq files afterwards.}
+\item{get_sra_file}{logical, whether to download SRA file first
+and get fastq files afterwards.}
 
 \item{trim_fastq}{logical, whether to trim fastq file.}
 
 \item{trimmomatic_path}{path to Trimmomatic software.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.}
+\item{index_dir}{directory of the indexing files needed for read
+mapping using Salmon. See function \code{'build_index'}.}
 
-\item{other_opts}{options other than default to use for read mapping. See Salmon documentation for the available options.}
+\item{other_opts}{options other than default to use for read mapping.
+See Salmon documentation for the available options.}
 
-\item{species}{name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.}
+\item{species}{name of the species. Only \code{'human'}, \code{'mouse'},
+and \code{'rat'} are allowed to use.}
 
-\item{countsFromAbundance}{whether to generate counts based on abundance. Available options are: \code{'no'}, 
-\code{'scaledTPM'} (abundance based estimated counts scaled up to library size), 
-\code{'lengthScaledTPM'} (default, scaled using the average transcript length over samples and library size). See Bioconductor package \link[tximport]{tximport} for further details.}
+\item{countsFromAbundance}{whether to generate counts based on
+abundance. Available options are: \code{'no'}, 
+\code{'scaledTPM'} (abundance based estimated counts scaled up to
+library size), 
+\code{'lengthScaledTPM'} (default, scaled using the average transcript
+length over samples and library size). See Bioconductor package
+\link[tximport]{tximport} for further details.}
 
 \item{n_thread}{number of cores to use.}
 }
 \value{
-a list of metadata from GEO and SRA saved in the \code{destdir}. Another list of gene and transcript level estimated counts summarized by 
-Bioconductor package \code{'tximport'} is also saved in the \code{destdir}.
+a list of metadata from GEO and SRA saved in the \code{destdir}.
+Another list of gene and transcript level estimated counts summarized
+by Bioconductor package \code{'tximport'} is also saved in the
+\code{destdir}.
 }
 \description{
-\code{process_geo_rnaseq} downloads and processes GEO RNA-seq data for a given GEO series accession ID. It filters metadata for RNA-seq samples only. 
-We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping.
+\code{process_geo_rnaseq} downloads and processes GEO RNA-seq data
+for a given GEO series accession ID. It filters metadata for RNA-seq
+samples only. 
+We use SRA toolkit for downloading SRA data, Trimmomatic for read
+trimming (optional), and Salmon for read mapping.
 }
 \examples{
 geo_series_acc="GSE107363"
 \dontrun{
-process_geo_rnaseq (geo_series_acc=geo_series_acc, destdir=".", ascp=TRUE, 
-prefetch_workspace="path_to_prefetch_workspace",ascp_path="path_to_aspera",
-get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="path_to_indexDir",
+process_geo_rnaseq (geo_series_acc=geo_series_acc, destdir=".",
+ascp=TRUE, prefetch_workspace="path_to_prefetch_workspace",
+ascp_path="path_to_aspera",get_sra_file=FALSE, trim_fastq=FALSE,
+trimmomatic_path=NULL,index_dir="path_to_indexDir",
 species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
 }
 
 }
 \references{
-Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and Carl Kingsford (2017):
-Salmon provides fast and bias-aware quantification of transcript expression. Nature methods, 14(4), 417.
+Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and
+Carl Kingsford (2017): Salmon provides fast and bias-aware
+quantification of transcript expression. Nature methods, 14(4), 417.
 \url{https://www.nature.com/articles/nmeth.4197}
 
 Charlotte Soneson, Michael I. Love, Mark D. Robinson (2015):

@@ -10,9 +10,11 @@ run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
 \arguments{
 \item{srr_id}{SRA run accession ID.}
 
-\item{library_layout}{layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.}
+\item{library_layout}{layout of the library used. Either \code{'SINGLE'}
+or \code{'PAIRED'}.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.}
+\item{index_dir}{directory of the indexing files needed for read 
+mapping using Salmon. See function \code{'build_index'}.}
 
 \item{destdir}{directory where all the results will be saved.}
 
@@ -20,41 +22,61 @@ run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
 
 \item{use_trimmed_fastq}{logical, whether to use trimmed fastq files.}
 
-\item{other_opts}{other options to use. See Salmon documentation for the available options.}
+\item{other_opts}{other options to use. See Salmon documentation for
+the available options.}
 
 \item{n_thread}{number of cores to use.}
 }
 \value{
-The following items will be returned and saved in the salmon directory:
+The following items will be returned and saved in the salmon
+directory:
 \enumerate{
-\item quant_new.sf: plain-text, tab-separated quantification file that contains 5 column: Name,Length,EffectiveLength,TPM, and NumReads.
-\item cmd_info.json: A JSON format file that records the main command line parameters with which Salmon was invoked for the run that produced the output in this directory.
-\item aux_info: This directory will have a number of files (and subfolders) depending on how salmon was invoked.
-\item meta_info.json: A JSON file that contains meta information about the run, including stats such as the number of observed and mapped fragments, details of the bias modeling etc. 
-\item ambig_info.tsv: This file contains information about the number of uniquely-mapping reads as well as the total number of ambiguously-mapping reads for each transcript. 
-\item lib_format_counts.json: This JSON file reports the number of fragments that had at least one mapping compatible with the designated library format, as well as the number that didn't. 
-\item libParams: The auxiliary directory will contain a text file called flenDist.txt. This file contains an approximation of the observed fragment length distribution.
+\item quant_new.sf: plain-text, tab-separated quantification file
+that contains 5 column: Name,Length,EffectiveLength,TPM, and NumReads.
+\item cmd_info.json: A JSON format file that records the main command
+line parameters with which Salmon was invoked for the run that produced
+the output in this directory.
+\item aux_info: This directory will have a number of files (and
+subfolders) depending on how salmon was invoked.
+\item meta_info.json: A JSON file that contains meta information about
+the run, including stats such as the number of observed and mapped
+fragments, details of the bias modeling etc. 
+\item ambig_info.tsv: This file contains information about the number
+of uniquely-mapping reads as well as the total number of
+ambiguously-mapping reads for each transcript. 
+\item lib_format_counts.json: This JSON file reports the number of
+fragments that had at least one mapping compatible with the designated
+library format, as well as the number that didn't. 
+\item libParams: The auxiliary directory will contain a text file
+called flenDist.txt. This file contains an approximation of the
+observed fragment length distribution.
 }
 }
 \description{
-\code{run_salmon} is a wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
+\code{run_salmon} is a wrapper function for mapping reads to quantify
+transcript abundances using Salmon. You need to install Salmon and
+build index to run this function. 
 For index building see function \code{'build_index'}.
 }
 \details{
-\code{run_salmon} We use default options of Salmon. This function works for a single sample. You can use this function in a loop for multiple samples. 
+\code{run_salmon} We use default options of Salmon. This function
+works for a single sample. You can use this function in a loop
+for multiple samples. 
 For other options from Salmon use \code{'other_opts'}.
 }
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-run_salmon(srr_id=srr_id, library_layout="SINGLE", index_dir="path_to_index_dir",
+run_salmon(srr_id=srr_id, library_layout="SINGLE", 
+index_dir="path_to_index_dir",
 destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,
 other_opts=NULL, n_thread=2)
 }
 
 }
 \references{
-Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and Carl Kingsford (2017):
-Salmon provides fast and bias-aware quantification of transcript expression. Nature methods, 14(4), 417.
+Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and
+Carl Kingsford (2017): Salmon provides fast and bias-aware
+quantification of transcript expression. Nature methods, 14(4), 417.
 \url{https://www.nature.com/articles/nmeth.4197}
 }

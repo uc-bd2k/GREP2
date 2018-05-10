@@ -13,25 +13,35 @@ get_srr(srr_id, destdir, ascp = TRUE, prefetch_workspace, ascp_path)
 
 \item{ascp}{logical, whether to use Aspera for downloading SRA files.}
 
-\item{prefetch_workspace}{directory where SRA run files will be downloaded. This parameter is needed if \code{ascp=TRUE}. 
-The location of this directory can be found by going to the aspera directory (/.aspera/connect/bin/) and typing \code{'vdb-config -i'}.
-A new window will pop-up and under the \code{'Workspace Name'}, you will find the location. Usually the default is \code{'/home/username/ncbi/public'}.}
+\item{prefetch_workspace}{directory where SRA run files will be downloaded.
+This parameter is needed if \code{ascp=TRUE}. 
+The location of this directory can be found by going to the aspera 
+directory (/.aspera/connect/bin/) and typing \code{'vdb-config -i'}.
+A new window will pop-up and under the \code{'Workspace Name'}, 
+you will find the location. Usually the default is 
+\code{'/home/username/ncbi/public'}.}
 
 \item{ascp_path}{path to the Aspera software.}
 }
 \value{
-SRA run accession file with extension ".sra". If you use \code{ascp=TRUE}, then downloaded files will be saved under \code{'/prefetch_workspace/sra'} directory. 
-If \code{ascp=FALSE}, then files will be saved in the \code{'destdir'}
+SRA run accession file with extension ".sra". If you use 
+\code{ascp=TRUE}, then downloaded files will be saved under 
+\code{'/prefetch_workspace/sra'} directory. 
+If \code{ascp=FALSE}, then files will be saved in the 
+\code{'destdir'}
 }
 \description{
-\code{get_srr} downloads SRA files using Aspera (\url{http://www.asperasoft.com/}) or FTP. 
-We recommend using Aspera for fast downloading. You need to install Aspera for using \code{ascp} option.
+\code{get_srr} downloads SRA files using Aspera 
+(\url{http://www.asperasoft.com/}) or FTP. 
+We recommend using Aspera for fast downloading. 
+You need to install Aspera for using \code{ascp} option.
 }
 \examples{
 srr_id="SRR6324192"
 \dontrun{
 get_srr(srr_id=srr_id, destdir="/mnt/raid/test", ascp=TRUE, 
-prefetch_workspace="/mnt/raid/test/prefetch_workspace", ascp_path="~/.aspera")
+prefetch_workspace="/mnt/raid/test/prefetch_workspace", 
+ascp_path="~/.aspera")
 }
 
 }

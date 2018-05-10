@@ -10,22 +10,29 @@ get_fastq(srr_id, library_layout = c("SINGLE", "PAIRED"),
 \arguments{
 \item{srr_id}{SRA run accession ID.}
 
-\item{library_layout}{layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.}
+\item{library_layout}{layout of the library used. Either 
+\code{'SINGLE'} or \code{'PAIRED'}.}
 
-\item{get_sra_file}{logical, whether to download SRA file first and get fastq files afterwards or directly download fastq files.}
+\item{get_sra_file}{logical, whether to download SRA file
+first and get fastq files afterwards or directly download
+fastq files.}
 
-\item{sra_files_dir}{directory where SRA files are saved. If you use \code{get_sra_file=FALSE} then \code{sra_files_dir=NULL}.}
+\item{sra_files_dir}{directory where SRA files are saved.
+If you use \code{get_sra_file=FALSE} then \code{sra_files_dir=NULL}.}
 
 \item{n_thread}{number of cores to use.}
 
 \item{destdir}{directory where all the results will be saved.}
 }
 \value{
-A single fastq file will be generated for SINGLE end reads and two files for PAIRED end reads.
+A single fastq file will be generated for SINGLE end
+reads and two files for PAIRED end reads.
 }
 \description{
 \code{get_fastq} downloads fastq files using SRA toolkit. 
-We recommend using Aspera for fast downloading. You need to install Aspera(\url{http://www.asperasoft.com/}) for using \code{ascp} option.
+We recommend using Aspera for fast downloading. You need to 
+install Aspera(\url{http://www.asperasoft.com/}) for using 
+\code{ascp} option.
 }
 \examples{
 srr_id="SRR6324192"

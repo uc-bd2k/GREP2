@@ -17,7 +17,9 @@ run_fastqc(destdir, fastq_dir, n_thread)
 HTML report of the fastq files under fastqc directory.
 }
 \description{
-\code{run_fastqc} HTML report of each fastq files using FastQC. You need to install FastQC from \url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/}
+\code{run_fastqc} HTML report of each fastq files using FastQC.
+You need to install FastQC from
+\url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/}
 }
 \examples{
 destdir="/mnt/raid/test"

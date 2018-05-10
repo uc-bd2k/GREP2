@@ -12,11 +12,13 @@ trim_fastq(srr_id, fastq_dir, instrument, trimmomatic_path,
 
 \item{fastq_dir}{directory of the fastq files.}
 
-\item{instrument}{name of the illumina sequencing platform. For example, \code{'HiSeq'}.}
+\item{instrument}{name of the illumina sequencing platform.
+For example, \code{'HiSeq'}.}
 
 \item{trimmomatic_path}{path to the Trimmomatic software.}
 
-\item{library_layout}{layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.}
+\item{library_layout}{layout of the library used. Either \code{'SINGLE'}
+or \code{'PAIRED'}.}
 
 \item{n_thread}{number of cores.}
 }
@@ -24,14 +26,18 @@ trim_fastq(srr_id, fastq_dir, instrument, trimmomatic_path,
 trimmed fastq files.
 }
 \description{
-\code{trim_fastq} trim fastq files based on the illumina instruments using Trimmomatic.
+\code{trim_fastq} trim fastq files based on the illumina instruments
+using Trimmomatic.
 }
 \details{
 The following parameters are used as default in the trimmoatic function:
 \enumerate{
-\item Remove leading low quality or N bases (below quality 3) (LEADING:3)
-\item Remove trailing low quality or N bases (below quality 3) (TRAILING:3)
-\item Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
+\item Remove leading low quality or N bases (below quality 3) 
+(LEADING:3)
+\item Remove trailing low quality or N bases (below quality 3) 
+(TRAILING:3)
+\item Scan the read with a 4-base wide sliding window, cutting when
+the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
 \item Drop reads below the 36 bases long (MINLEN:36)
 }
 }
@@ -39,12 +45,14 @@ The following parameters are used as default in the trimmoatic function:
 srr_id="SRR6324192"
 \dontrun{
 trim_fastq(srr_id=srr_id, fastq_dir=".", instrument="HiSeq", 
-trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE", n_thread=2)
+trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE",
+n_thread=2)
 }
 
 }
 \references{
 Anthony M. Bolger, Marc Lohse, and Bjoern Usadel (2014):
-Trimmomatic: a flexible trimmer for Illumina sequence data. Bioinformatics, 30(15), 2114-2120.
+Trimmomatic: a flexible trimmer for Illumina sequence data.
+Bioinformatics, 30(15), 2114-2120.
 \url{https://doi.org/10.1093/bioinformatics/btu170}
 }

@@ -1,6 +1,8 @@
 #' QC report for each fastq files using FastQC
 #'
-#' \code{run_fastqc} HTML report of each fastq files using FastQC. You need to install FastQC from \url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/} 
+#' \code{run_fastqc} HTML report of each fastq files using FastQC.
+#' You need to install FastQC from
+#' \url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/} 
 #'
 #' @param destdir directory where all the results will be saved.
 #' @param fastq_dir directory of the fastq files.
@@ -17,14 +19,12 @@
 #'
 #' @export
 run_fastqc <- function(destdir, fastq_dir, n_thread ) {
-	
-	cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
-	#setwd(destdir)
-	fastq_files = list.files(fastq_dir, pattern=".fastq$", full.names=TRUE)
-	
-	if(!dir.exists("fastqc")){
-		system(paste0("mkdir ",destdir,"/fastqc"))
-	}
-	#setwd(paste0(destdir,"/fastqc/"))
-	system(paste0("fastqc -o ",destdir,"/fastqc/ --threads ",n_thread," ", fastq_files))
+    cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
+    fastq_files = list.files(fastq_dir, pattern=".fastq$", full.names=TRUE)
+
+    if(!dir.exists("fastqc")){
+        system(paste0("mkdir ",destdir,"/fastqc"))
+    }
+    system(paste0("fastqc -o ",destdir,"/fastqc/ --threads ",n_thread," ", 
+        fastq_files))
 }

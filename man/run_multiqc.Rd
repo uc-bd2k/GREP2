@@ -17,7 +17,8 @@ run_multiqc(fastqc_dir, salmon_dir, destdir)
 HTML report.
 }
 \description{
-\code{run_fastqc} generates a single HTML report from the fastQC reports and salmon read mapping results using MultiQC.
+\code{run_fastqc} generates a single HTML report from the fastQC
+reports and salmon read mapping results using MultiQC.
 }
 \examples{
 destdir="/mnt/raid/test"
