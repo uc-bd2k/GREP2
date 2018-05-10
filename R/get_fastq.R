@@ -13,9 +13,9 @@
 #' @return A single fastq file will be generated for SINGLE end reads and two files for PAIRED end reads.
 #' 
 #' @examples
-#' get_metadata(geo_series_acc="GSE107363")
+#' srr_id="SRR6324192"
 #' \dontrun{
-#' get_fastq(srr_id="SRR6324192", library_layout="SINGLE", get_sra_file=FALSE, 
+#' get_fastq(srr_id=srr_id, library_layout="SINGLE", get_sra_file=FALSE, 
 #' sra_files_dir=NULL, n_thread=2, destdir="/mnt/raid/test")
 #' }
 #'

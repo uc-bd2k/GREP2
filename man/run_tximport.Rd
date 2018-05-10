@@ -29,9 +29,9 @@ a list of gene and transcript level estimated counts.
 We use Ensembl annotation for both genes and transcripts.
 }
 \examples{
-get_metadata(geo_series_acc="GSE107363")
+srr_id="SRR6324192"
 \dontrun{
-run_tximport(srr_id="SRR6324192", species="human", salmon_dir="path_to_salmon_files_dir", 
+run_tximport(srr_id=srr_id, species="human", salmon_dir="path_to_salmon_files_dir", 
 countsFromAbundance = "lengthScaledTPM")
 }
 

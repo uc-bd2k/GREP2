@@ -35,7 +35,7 @@ To consistently process GEO RNA-seq datasets through a robust and uniform system
 You can run individual functions for each step or run the whole pipeline using `process_geo_rnaseq` function. To demonstrate the usage of the package, we will process a small dataset from GEO ( [GSE107363](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107363) ).
   
 ### Step 1: Get metadata
-```{r}
+```{r, eval=FALSE}
 options(warn=-1)
 library(GREP2)
 get_metadata(geo_series_acc="GSE107363")

@@ -54,7 +54,7 @@ get_metadata <- function(geo_series_acc) {
 	"_metadata.csv 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=efetch&db=sra&rettype=runinfo&term=",sra_study_acc,"'", sep=""))
 	metadata_sra <- data.frame(lapply(utils::read.csv(file=paste(geo_series_acc,"_metadata.csv", sep=""), header=TRUE), as.character), stringsAsFactors=FALSE)
 	
-	system(paste("rm -rf *matrix.txt.gz *_metadata.csv *.gz"))
+	#system(paste("rm -rf *matrix.txt.gz *_metadata.csv *.gz"))
 	metadata <- list(metadata_geo=metadata_geo, metadata_sra=metadata_sra)
 	return(metadata)
 }

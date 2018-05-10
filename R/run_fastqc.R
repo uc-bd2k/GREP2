@@ -9,10 +9,10 @@
 #' @return HTML report of the fastq files under fastqc directory.
 #' 
 #' @examples
-#' get_metadata(geo_series_acc="GSE107363")
+#' destdir="/mnt/raid/test"
+#' fastq_dir="/mnt/raid/test/GSE107363/SRR6324192"
 #' \dontrun{
-#' run_fastqc(destdir="/mnt/raid/test", fastq_dir="/mnt/raid/test/GSE107363/SRR6324192", 
-#' n_thread=2)
+#' run_fastqc(destdir=destdir, fastq_dir=fastq_dir, n_thread=2)
 #' }
 #'
 #' @export

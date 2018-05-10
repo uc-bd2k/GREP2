@@ -28,9 +28,9 @@ If \code{ascp=FALSE}, then files will be saved in the \code{'destdir'}
 We recommend using Aspera for fast downloading. You need to install Aspera for using \code{ascp} option.
 }
 \examples{
-get_metadata(geo_series_acc="GSE107363")
+srr_id="SRR6324192"
 \dontrun{
-get_srr(srr_id="SRR6324192", destdir="/mnt/raid/test", ascp=TRUE, 
+get_srr(srr_id=srr_id, destdir="/mnt/raid/test", ascp=TRUE, 
 prefetch_workspace="/mnt/raid/test/prefetch_workspace", ascp_path="~/.aspera")
 }
 

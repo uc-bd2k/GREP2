@@ -41,8 +41,9 @@
 #' \url{https://doi.org/10.1093/bioinformatics/btw354} 
 #'
 #' @examples
+#' geo_series_acc="GSE107363"
 #' \dontrun{
-#' process_geo_rnaseq (geo_series_acc="GSE107363", destdir=".", ascp=TRUE, 
+#' process_geo_rnaseq (geo_series_acc=geo_series_acc, destdir=".", ascp=TRUE, 
 #' prefetch_workspace="path_to_prefetch_workspace",ascp_path="path_to_aspera",
 #' get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="path_to_indexDir",
 #' species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)

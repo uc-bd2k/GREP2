@@ -50,8 +50,9 @@ Bioconductor package \code{'tximport'} is also saved in the \code{destdir}.
 We use SRA toolkit for downloading SRA data, Trimmomatic for read trimming (optional), and Salmon for read mapping.
 }
 \examples{
+geo_series_acc="GSE107363"
 \dontrun{
-process_geo_rnaseq (geo_series_acc="GSE107363", destdir=".", ascp=TRUE, 
+process_geo_rnaseq (geo_series_acc=geo_series_acc, destdir=".", ascp=TRUE, 
 prefetch_workspace="path_to_prefetch_workspace",ascp_path="path_to_aspera",
 get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="path_to_indexDir",
 species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)

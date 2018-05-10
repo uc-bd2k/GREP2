@@ -33,9 +33,9 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' get_metadata(geo_series_acc="GSE107363")
+#' srr_id="SRR6324192"
 #' \dontrun{
-#' run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="path_to_index_dir",
+#' run_salmon(srr_id=srr_id, library_layout="SINGLE", index_dir="path_to_index_dir",
 #' destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,
 #' other_opts=NULL, n_thread=2)
 #' }
