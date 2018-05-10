@@ -1,6 +1,6 @@
 Package: GREP2
 Title: GEO RNA-seq Experiments Processing Pipeline
-Version: 0.99.1
+Version: 0.99.2
 Author: Naim Mahi [cre,aut], Mario Medvedovic [aut, ctb]
 Maintainer: Naim Mahi <naim.al.mahi@gmail.com>
 Description: An R based pipeline to download and process GEO RNA-seq data. 
