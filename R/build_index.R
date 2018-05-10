@@ -25,7 +25,8 @@
 #' }
 #'
 #' @export
-build_index <- function(species=c("human","mouse","rat"),kmer=31,
+#'
+build_index<-function(species=c("human","mouse","rat"),kmer=31,
 ens_release=92){
     
     species <- match.arg(species, c("human","mouse","rat"))
@@ -41,8 +42,7 @@ ens_release=92){
         system(paste0("salmon index -t Homo_sapiens.GRCh38.release",
             ens_release,".cdna.ncrna.fa -i human_transcripts_release",
             ens_release,"_index"))
-    }
-    if(species=="mouse"){
+    } else if(species=="mouse"){
         system(paste0("wget ftp://ftp.ensembl.org/pub/release-",ens_release,
             "/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz"))
         system(paste0("wget ftp://ftp.ensembl.org/pub/release-",ens_release,
@@ -53,8 +53,7 @@ ens_release=92){
         system(paste0("salmon index -t Mus_musculus.GRCm38.release",
             ens_release,".cdna.ncrna.fa -i mouse_transcripts_release",
             ens_release,"_index"))
-    }
-    if(species=="rat"){
+    } else if(species=="rat"){
         system(paste0("wget ftp://ftp.ensembl.org/pub/release-",ens_release,
             "/fasta/rattus_norvegicus/cdna/
             Rattus_norvegicus.Rnor_6.0.cdna.all.fa.gz"))
@@ -67,5 +66,7 @@ ens_release=92){
         system(paste0("salmon index -t Rattus_norvegicus.Rnor_6.0.release",
             ens_release,".cdna.ncrna.fa -i rat_transcripts_release",
             ens_release,"_index"))
+    } else {
+        warning("A valid species name is missing")
     }
 }

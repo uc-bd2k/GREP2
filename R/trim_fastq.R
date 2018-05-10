@@ -82,5 +82,4 @@ trim_fastq <- function(srr_id,fastq_dir,instrument,trimmomatic_path,
         "-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 
         MINLEN:36"))
     }
-	
 }

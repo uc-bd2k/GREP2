@@ -35,7 +35,6 @@
 #' }
 #'
 #' @importFrom AnnotationDbi select
-#' @importFrom GenomicFeatures transcripts
 #' @importFrom utils read.delim
 #'
 #' @import EnsDb.Hsapiens.v86 
@@ -55,17 +54,17 @@ salmon_dir,countsFromAbundance=c("no","scaledTPM","lengthScaledTPM")){
     species <- match.arg(species,c("human","mouse","rat"))
     edb= function(species) {
         if (species=="human") {
-            GenomicFeatures::transcripts(
+            transcripts(
             EnsDb.Hsapiens.v86::EnsDb.Hsapiens.v86,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")
         } else if (species=="mouse") {
-            GenomicFeatures::transcripts(
+            transcripts(
             EnsDb.Mmusculus.v79::EnsDb.Mmusculus.v79,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")
         } else if (species=="rat") {
-            GenomicFeatures::transcripts(
+            transcripts(
             EnsDb.Rnorvegicus.v79::EnsDb.Rnorvegicus.v79,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")
