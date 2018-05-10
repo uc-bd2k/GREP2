@@ -56,16 +56,16 @@
 #' @examples
 #' srr_id="SRR6324192"
 #' \dontrun{
-#' run_salmon(srr_id=srr_id, library_layout="SINGLE", 
+#' run_salmon(srr_id=srr_id,library_layout="SINGLE", 
 #' index_dir="path_to_index_dir",
-#' destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,
-#' other_opts=NULL, n_thread=2)
+#' destdir=".",fastq_dir="path_to_fastq_dir",use_trimmed_fastq=FALSE,
+#' other_opts=NULL,n_thread=2)
 #' }
 #'
 #' @export 
 run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"),
-    index_dir, destdir, fastq_dir, use_trimmed_fastq=FALSE,
-    other_opts=NULL, n_thread ) {
+index_dir, destdir, fastq_dir, use_trimmed_fastq=FALSE,
+other_opts=NULL, n_thread ) {
 
     if(!dir.exists(paste0(destdir,"/salmon"))){
         system(paste0("mkdir ",destdir,"/salmon"))
@@ -74,28 +74,28 @@ run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"),
 
     if (library_layout=="SINGLE") {
         if(use_trimmed_fastq){
-            system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
-            " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, 
-            "_trimmed.fastq -o ",destdir,"/salmon/", srr_id,
+            system(paste0("salmon quant -i ",index_dir," -p ",n_thread,
+            " ",other_opts, " -l A -r ",fastq_dir,"/",srr_id, 
+            "_trimmed.fastq -o ",destdir,"/salmon/",srr_id,
             "_transcripts_quant"))
         } else {
-            system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
-            " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, 
+            system(paste0("salmon quant -i ",index_dir," -p ",n_thread,
+            " ",other_opts, " -l A -r ",fastq_dir,"/",srr_id, 
             "_pass.fastq -o ",destdir,"/salmon/",srr_id,
             "_transcripts_quant"))
         }
     } else {
         if(use_trimmed_fastq){
-            system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
-            " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id,
-            "_trimmed_1.fastq ", "-2 ",fastq_dir,"/", srr_id,
-            "_trimmed_2.fastq -o ",destdir,"/salmon/", srr_id,
+            system(paste0("salmon quant -i ",index_dir," -p ",n_thread,
+            " ",other_opts, " -l A -1 ",fastq_dir,"/",srr_id,
+            "_trimmed_1.fastq ", "-2 ",fastq_dir,"/",srr_id,
+            "_trimmed_2.fastq -o ",destdir,"/salmon/",srr_id,
             "_transcripts_quant"))
         } else {
-            system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
-            " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id,
-            "_pass_1.fastq ", "-2 ",fastq_dir,"/", srr_id,
-            "_pass_2.fastq -o ",destdir,"/salmon/", srr_id,
+            system(paste0("salmon quant -i ",index_dir," -p ",n_thread,
+            " ",other_opts, " -l A -1 ",fastq_dir,"/",srr_id,
+            "_pass_1.fastq ", "-2 ",fastq_dir,"/",srr_id,
+            "_pass_2.fastq -o ",destdir,"/salmon/",srr_id,
             "_transcripts_quant"))
         }
     }

@@ -18,15 +18,15 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' species="rat"
+#' species="human"
 #' \dontrun{
-#' build_index(species=species, kmer=31,
+#' build_index(species=species,kmer=31,
 #' ens_release=92)
 #' }
 #'
 #' @export
 build_index <- function(species=c("human","mouse","rat"),kmer=31,
-    ens_release=92){
+ens_release=92){
     
     species <- match.arg(species, c("human","mouse","rat"))
 

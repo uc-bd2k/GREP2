@@ -12,9 +12,9 @@
 #' 
 #' @examples
 #' destdir="/mnt/raid/test"
-#' fastq_dir="/mnt/raid/test/GSE107363/SRR6324192"
 #' \dontrun{
-#' run_fastqc(destdir=destdir,fastq_dir=fastq_dir,n_thread=2)
+#' run_fastqc(destdir=destdir,fastq_dir="/mnt/raid/test/",
+#' n_thread=2)
 #' }
 #'
 #' @export

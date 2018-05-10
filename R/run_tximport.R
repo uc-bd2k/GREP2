@@ -30,8 +30,8 @@
 #' @examples
 #' srr_id="SRR6324192"
 #' \dontrun{
-#' run_tximport(srr_id=srr_id, species="human", salmon_dir=
-#' "path_to_salmon_files_dir",countsFromAbundance = "lengthScaledTPM")
+#' run_tximport(srr_id=srr_id, species="human",salmon_dir=
+#' "path_to_salmon_files_dir",countsFromAbundance="lengthScaledTPM")
 #' }
 #'
 #' @importFrom AnnotationDbi select
@@ -48,57 +48,57 @@
 #'
 #' @export 
 run_tximport <- function(srr_id, species=c("human","mouse","rat"),
-    salmon_dir, countsFromAbundance = c("no","scaledTPM","lengthScaledTPM")){
+salmon_dir,countsFromAbundance=c("no","scaledTPM","lengthScaledTPM")){
 
     countsFromAbundance <- match.arg(countsFromAbundance,
         c("no","scaledTPM","lengthScaledTPM"))
-    species <- match.arg(species, c("human","mouse","rat"))
+    species <- match.arg(species,c("human","mouse","rat"))
     edb= function(species) {
-        if (species == "human") {
+        if (species=="human") {
             GenomicFeatures::transcripts(
             EnsDb.Hsapiens.v86::EnsDb.Hsapiens.v86,
-            columns = c("tx_id","gene_id", "gene_name"),
-            return.type = "DataFrame")
-        } else if (species == "mouse") {
+            columns=c("tx_id","gene_id","gene_name"),
+            return.type="DataFrame")
+        } else if (species=="mouse") {
             GenomicFeatures::transcripts(
             EnsDb.Mmusculus.v79::EnsDb.Mmusculus.v79,
-            columns = c("tx_id","gene_id", "gene_name"),
-            return.type = "DataFrame")
-        } else if (species == "rat") {
+            columns=c("tx_id","gene_id","gene_name"),
+            return.type="DataFrame")
+        } else if (species=="rat") {
             GenomicFeatures::transcripts(
             EnsDb.Rnorvegicus.v79::EnsDb.Rnorvegicus.v79,
-            columns = c("tx_id","gene_id", "gene_name"),
-            return.type = "DataFrame")
+            columns=c("tx_id","gene_id","gene_name"),
+            return.type="DataFrame")
         } else {
             return(NULL)
         }
     }
-    gene_ensembl= function(species) {
-        if (species == "human") {
+    gene_ensembl=function(species) {
+        if (species=="human") {
             return(org.Hs.eg.db::org.Hs.eg.db)
-        } else if (species == "mouse") {
+        } else if (species=="mouse") {
             return(org.Mm.eg.db::org.Mm.eg.db)
-        } else if (species == "rat") {
+        } else if (species=="rat") {
             return(org.Rn.eg.db::org.Rn.eg.db)
         } else {
             return(NULL)
         }
     }
 
-    assign('Tx.ensemble', edb(species))
+    assign('Tx.ensemble',edb(species))
     Tx.ensemble <- get('Tx.ensemble')
     tx2gene<- Tx.ensemble[,c(1,2)]
     files <- file.path(paste0(salmon_dir,"/",srr_id,"_transcripts_quant/",
         srr_id, "_quant_new.sf"))
 
     cat("generating counts table\n")
-    tx.t <- tximport::tximport(files, type = "salmon", tx2gene = tx2gene,
-        txOut=TRUE, importer = utils::read.delim,
-        countsFromAbundance = countsFromAbundance)
+    tx.t <- tximport::tximport(files, type="salmon", tx2gene=tx2gene,
+        txOut=TRUE, importer=utils::read.delim,
+        countsFromAbundance=countsFromAbundance)
     if(all(apply(is.na(tx.t$counts), 2, any))==TRUE ){
-        txi.t <- tximport::tximport(files, type = "salmon",
-        tx2gene = tx2gene, txOut=TRUE, importer = utils::read.delim,
-        dropInfReps=TRUE, countsFromAbundance = "no")
+        txi.t <- tximport::tximport(files, type="salmon",
+        tx2gene = tx2gene, txOut=TRUE, importer=utils::read.delim,
+        dropInfReps=TRUE, countsFromAbundance="no")
     } else {
         txi.t <- tx.t
     }

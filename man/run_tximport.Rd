@@ -37,8 +37,8 @@ We use Ensembl annotation for both genes and transcripts.
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-run_tximport(srr_id=srr_id, species="human", salmon_dir=
-"path_to_salmon_files_dir",countsFromAbundance = "lengthScaledTPM")
+run_tximport(srr_id=srr_id, species="human",salmon_dir=
+"path_to_salmon_files_dir",countsFromAbundance="lengthScaledTPM")
 }
 
 }

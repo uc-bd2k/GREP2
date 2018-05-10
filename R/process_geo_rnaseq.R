@@ -67,7 +67,7 @@
 #' ascp=TRUE,prefetch_workspace="path_to_prefetch_workspace",
 #' ascp_path="path_to_aspera",get_sra_file=FALSE,trim_fastq=FALSE,
 #' trimmomatic_path=NULL,index_dir="path_to_indexDir",
-#' species="human",countsFromAbundance = "lengthScaledTPM",n_thread=2)
+#' species="human",countsFromAbundance="lengthScaledTPM",n_thread=2)
 #' }
 #'
 #' @importFrom parallel mclapply
@@ -99,12 +99,12 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
     instrument <- metadata$metadata_geo$instrument_model
     countsFromAbundance <- match.arg(countsFromAbundance,
         c("no","scaledTPM","lengthScaledTPM"))
-    species <- match.arg(species, c("human","mouse","rat"))
+    species <- match.arg(species,c("human","mouse","rat"))
 
     if(get_sra_file) {
         cat(paste("Downloading SRA files... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
-            get_srr(srr_id[i], destdir, ascp, prefetch_workspace,
+            get_srr(srr_id[i],destdir,ascp,prefetch_workspace,
             ascp_path)
         }, mc.cores=n_thread)
     } else {
@@ -115,30 +115,30 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
         cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
         sra_files_dir <- paste0(prefetch_workspace,"/sra/")
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
-            get_fastq(srr_id[i], library_layout[i], get_sra_file,
-            sra_files_dir, n_thread, destdir)
+            get_fastq(srr_id[i],library_layout[i],get_sra_file,
+            sra_files_dir,n_thread,destdir)
         }, mc.cores=n_thread)
     } else {
         cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
             sra_files_dir <- paste0(destdir,"/",srr_id[i])
-            get_fastq(srr_id[i], library_layout[i], get_sra_file,
-            sra_files_dir, n_thread, destdir)
+            get_fastq(srr_id[i],library_layout[i],get_sra_file,
+            sra_files_dir,n_thread,destdir)
         }, mc.cores=n_thread)
     }
 
     cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
     parallel::mclapply(seq_len(length(srr_id)),function(i) {
         fastq_dir <- paste0(destdir,"/",srr_id[i])
-        run_fastqc(destdir, fastq_dir, n_thread )
+        run_fastqc(destdir,fastq_dir,n_thread )
     }, mc.cores=n_thread)
 
     if(trim_fastq){
         cat(paste("Trimming fastq... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
             fastq_dir <- paste0(destdir,"/",srr_id[i])
-            trim_fastq (srr_id[i], fastq_dir, instrument,
-            trimmomatic_path, library_layout[i], n_thread)
+            trim_fastq (srr_id[i],fastq_dir,instrument,
+            trimmomatic_path,library_layout[i],n_thread)
         }, mc.cores=n_thread)
     }
     use_trimmed_fastq= if(trim_fastq){TRUE} else {FALSE}
@@ -146,18 +146,18 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
     cat(paste("Running Salmon and tximport... ",Sys.time(),"\n",sep=""))
     parallel::mclapply(seq_len(length(srr_id)),function(i) {
         fastq_dir <- paste0(destdir,"/",srr_id[i])
-        run_salmon (srr_id[i], library_layout[i], index_dir,
-        destdir, fastq_dir, use_trimmed_fastq, other_opts, n_thread)
+        run_salmon (srr_id[i],library_layout[i],index_dir,
+        destdir,fastq_dir,use_trimmed_fastq,other_opts,n_thread)
     }, mc.cores=n_thread)
 
     salmon_dir <- paste0(destdir,"/salmon/")
-    counts_data_list <- run_tximport (srr_id, species, salmon_dir,
+    counts_data_list <- run_tximport(srr_id,species,salmon_dir,
         countsFromAbundance)
-    save(counts_data_list, file=paste0(destdir,"/counts_data_list.RData"))
+    save(counts_data_list,file=paste0(destdir,"/counts_data_list.RData"))
 
     cat(paste("Running MultiQC... ",Sys.time(),"\n",sep=""))
     fastqc_dir <- paste0(destdir,"/fastqc/")
-    run_multiqc (fastqc_dir, salmon_dir, destdir)
+    run_multiqc (fastqc_dir,salmon_dir,destdir)
 
     cat(paste("Processing completed. ",Sys.time(),"\n",sep=""))
     print(utils::sessionInfo())

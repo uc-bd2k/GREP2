@@ -75,7 +75,7 @@ process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=".",
 ascp=TRUE,prefetch_workspace="path_to_prefetch_workspace",
 ascp_path="path_to_aspera",get_sra_file=FALSE,trim_fastq=FALSE,
 trimmomatic_path=NULL,index_dir="path_to_indexDir",
-species="human",countsFromAbundance = "lengthScaledTPM",n_thread=2)
+species="human",countsFromAbundance="lengthScaledTPM",n_thread=2)
 }
 
 }

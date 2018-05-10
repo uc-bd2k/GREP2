@@ -67,10 +67,10 @@ For other options from Salmon use \code{'other_opts'}.
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-run_salmon(srr_id=srr_id, library_layout="SINGLE", 
+run_salmon(srr_id=srr_id,library_layout="SINGLE", 
 index_dir="path_to_index_dir",
-destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,
-other_opts=NULL, n_thread=2)
+destdir=".",fastq_dir="path_to_fastq_dir",use_trimmed_fastq=FALSE,
+other_opts=NULL,n_thread=2)
 }
 
 }
