@@ -13,7 +13,7 @@
 #' @param get_sra_file logical, whether to download SRA file first and get fastq files afterwards.
 #' @param trim_fastq logical, whether to trim fastq file. 
 #' @param trimmomatic_path path to Trimmomatic software.
-#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.
+#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.
 #' @param other_opts options other than default to use for read mapping. See Salmon documentation for the available options.
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.
 #' @param countsFromAbundance whether to generate counts based on abundance. Available options are: \code{'no'}, 

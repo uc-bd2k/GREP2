@@ -5,8 +5,11 @@
 #' @return a list of GEO and SRA metadata. 
 #' 
 #' @examples
-#' get_metadata(geo_series_acc="GSE107363")
-#' 
+#' geo_series_acc="GSE107363"
+#' \dontrun{
+#' get_metadata(geo_series_acc=geo_series_acc)
+#' }
+#'
 #' @importFrom rentrez entrez_search
 #' @importFrom XML xmlRoot xmlValue xmlTreeParse getNodeSet
 #' @importFrom RCurl getURL
@@ -17,6 +20,7 @@
 #' @export 
 get_metadata <- function(geo_series_acc) {
 	
+	options(warn=-1)
 	geo_id <- rentrez::entrez_search(db="gds",term=geo_series_acc)$ids[[1]]
 	geo_summary <- XML::xmlRoot(XML::xmlTreeParse(RCurl::getURL(paste0("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gds&id=", geo_id))))
 	sra_study_acc <- XML::xmlValue(XML::getNodeSet(geo_summary[[1]], "//DocSum//Item//Item//Item[@Name='TargetObject']")[1][[1]])
@@ -57,4 +61,5 @@ get_metadata <- function(geo_series_acc) {
 	#system(paste("rm -rf *matrix.txt.gz *_metadata.csv *.gz"))
 	metadata <- list(metadata_geo=metadata_geo, metadata_sra=metadata_sra)
 	return(metadata)
+	options(warn=0)
 }

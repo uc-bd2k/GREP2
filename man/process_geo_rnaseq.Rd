@@ -29,7 +29,7 @@ A new window will pop-up and under the \code{'Workspace Name'}, you will find th
 
 \item{trimmomatic_path}{path to Trimmomatic software.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.}
+\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.}
 
 \item{other_opts}{options other than default to use for read mapping. See Salmon documentation for the available options.}
 

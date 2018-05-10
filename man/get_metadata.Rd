@@ -16,6 +16,9 @@ a list of GEO and SRA metadata.
 Download metadata from GEO and SRA
 }
 \examples{
-get_metadata(geo_series_acc="GSE107363")
+geo_series_acc="GSE107363"
+\dontrun{
+get_metadata(geo_series_acc=geo_series_acc)
+}
 
 }

@@ -1,14 +1,14 @@
 #' Quantify transcript abundances using Salmon
 #'
 #' \code{run_salmon} is a wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
-#' For index building see \link[build_index]{build_index}. 
+#' For index building see function \code{'build_index'}. 
 #'
 #' \code{run_salmon} We use default options of Salmon. This function works for a single sample. You can use this function in a loop for multiple samples. 
 #' For other options from Salmon use \code{'other_opts'}.
 #'
 #' @param srr_id SRA run accession ID.
 #' @param library_layout layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.
-#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.
+#' @param index_dir directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.
 #' @param destdir directory where all the results will be saved.
 #' @param fastq_dir directory of the fastq files.
 #' @param use_trimmed_fastq logical, whether to use trimmed fastq files. 

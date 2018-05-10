@@ -12,7 +12,7 @@ run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
 
 \item{library_layout}{layout of the library used. Either \code{'SINGLE'} or \code{'PAIRED'}.}
 
-\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See \link[GREP2]{build_index}.}
+\item{index_dir}{directory of the indexing files needed for read mapping using Salmon. See function \code{'build_index'}.}
 
 \item{destdir}{directory where all the results will be saved.}
 
@@ -38,7 +38,7 @@ The following items will be returned and saved in the salmon directory:
 }
 \description{
 \code{run_salmon} is a wrapper function for mapping reads to quantify transcript abundances using Salmon. You need to install Salmon and build index to run this function. 
-For index building see \link[build_index]{build_index}.
+For index building see function \code{'build_index'}.
 }
 \details{
 \code{run_salmon} We use default options of Salmon. This function works for a single sample. You can use this function in a loop for multiple samples. 
