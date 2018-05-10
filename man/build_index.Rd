@@ -4,15 +4,13 @@
 \alias{build_index}
 \title{Build index for mapping using Salmon}
 \usage{
-build_index(species = c("human", "mouse", "rat"), kmer = 31, destdir,
+build_index(species = c("human", "mouse", "rat"), kmer = 31,
   ens_release = 92)
 }
 \arguments{
 \item{species}{name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.}
 
 \item{kmer}{k-mer size for indexing. default is 31. See \code{'Salmon'} for details.}
-
-\item{destdir}{directory to save index files.}
 
 \item{ens_release}{version of Ensembl release.}
 }
@@ -23,7 +21,7 @@ directory of index files
 \code{build_index} for mapping reads using Salmon.
 }
 \examples{
-build_index(species="rat", kmer=31, destdir="/mnt/raid/test", ens_release=92)
+build_index(species="rat", kmer=31, ens_release=92)
 
 }
 \references{

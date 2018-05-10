@@ -4,7 +4,6 @@
 #'
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'}, and \code{'rat'} are allowed to use.
 #' @param kmer k-mer size for indexing. default is 31. See \code{'Salmon'} for details.
-#' @param destdir directory to save index files.
 #' @param ens_release version of Ensembl release.
 #'
 #' @return directory of index files
@@ -16,12 +15,12 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' build_index(species="rat", kmer=31, destdir="/mnt/raid/test", ens_release=92)
+#' build_index(species="rat", kmer=31, ens_release=92)
 #'
 #' @export
-build_index <- function(species=c("human","mouse","rat"), kmer=31, destdir, ens_release=92){
+build_index <- function(species=c("human","mouse","rat"), kmer=31, ens_release=92){
 	
-	setwd(destdir)
+	#setwd(destdir)
 	species <- match.arg(species, c("human","mouse","rat"))
 	
 	if(species=="human"){

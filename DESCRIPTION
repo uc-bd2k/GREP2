@@ -1,14 +1,15 @@
 Package: GREP2
 Title: GEO RNA-seq Experiments Processing Pipeline
-Version: 0.99.0
+Version: 0.99.1
 Author: Naim Mahi [cre,aut], Mario Medvedovic [aut, ctb]
 Maintainer: Naim Mahi <naim.al.mahi@gmail.com>
-Description: An R based comprehensive pipeline to download and process GEO RNA-seq data. 
+Description: An R based pipeline to download and process GEO RNA-seq data. 
+	For a given GEO series accession ID, this pipeline generates estimated read counts.
 Depends: R (>= 3.4.0)
 Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport, EnsDb.Hsapiens.v86, EnsDb.Rnorvegicus.v79, EnsDb.Mmusculus.v79, AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, org.Rn.eg.db, utils, GenomicFeatures
-Suggests: knitr, BiocStyle, RMySQL, ensembldb, rmarkdown
+Suggests: knitr, RMySQL, ensembldb, rmarkdown
 License: GPL (>= 3)
-VignetteBuilder: rmarkdown
+VignetteBuilder: knitr
 LazyData: true
 biocViews: RNASeq, GeneExpression, Software, DataImport, Preprocessing, QualityControl, Alignment
 RoxygenNote: 6.0.1
