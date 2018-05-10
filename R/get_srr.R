@@ -79,6 +79,6 @@ get_srr <- function(srr_id,destdir,ascp=TRUE,prefetch_workspace,ascp_path){
                 cat(paste("All SRA files are downloaded successfully. ",
                 Sys.time(),"\n",sep=""))
             }
-        }			
+        }
     }
 }

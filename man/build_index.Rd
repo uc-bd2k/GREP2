@@ -23,12 +23,12 @@ directory of index files
 \code{build_index} for mapping reads using Salmon.
 }
 \examples{
-build_index(species="rat", kmer=31, ens_release=92)
+build_index(species="rat", kmer=31,
+ens_release=92)
 
 }
 \references{
 Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and 
-Carl Kingsford (2017): Salmon provides fast and bias-aware quantification 
-of transcript expression. Nature methods, 14(4), 417.
+Carl Kingsford (2017): Salmon provides fast and bias-aware 
 \url{https://www.nature.com/articles/nmeth.4197}
 }

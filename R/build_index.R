@@ -13,18 +13,18 @@
 #' @references 
 #' 
 #' Rob Patro, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and 
-#' Carl Kingsford (2017): Salmon provides fast and bias-aware quantification 
-#' of transcript expression. Nature methods, 14(4), 417.
+#' Carl Kingsford (2017): Salmon provides fast and bias-aware 
+# quantification of transcript expression. Nature methods, 14(4),417.
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' build_index(species="rat", kmer=31, ens_release=92)
+#' build_index(species="rat", kmer=31,
+#' ens_release=92)
 #'
 #' @export
-build_index <- function(species=c("human","mouse","rat"), kmer=31, 
+build_index <- function(species=c("human","mouse","rat"),kmer=31,
     ens_release=92){
-	
-	#setwd(destdir)
+    
     species <- match.arg(species, c("human","mouse","rat"))
 
     if(species=="human"){

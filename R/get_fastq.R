@@ -22,13 +22,15 @@
 #' @examples
 #' srr_id="SRR6324192"
 #' \dontrun{
-#' get_fastq(srr_id=srr_id, library_layout="SINGLE", get_sra_file=FALSE, 
-#' sra_files_dir=NULL, n_thread=2, destdir="/mnt/raid/test")
+#' get_fastq(srr_id=srr_id, library_layout="SINGLE",
+#' get_sra_file=FALSE, 
+#' sra_files_dir=NULL, n_thread=2,
+#' destdir="/mnt/raid/test")
 #' }
 #'
 #' @export 
-get_fastq <- function(srr_id, library_layout=c("SINGLE","PAIRED"), 
-    get_sra_file=FALSE, sra_files_dir=NULL, n_thread, destdir) {
+get_fastq <- function(srr_id, library_layout=c("SINGLE","PAIRED"),
+get_sra_file=FALSE, sra_files_dir=NULL, n_thread, destdir) {
 
     if(!dir.exists(paste0(destdir,"/",srr_id))){
         system(paste0("mkdir ",destdir,"/",srr_id))

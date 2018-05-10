@@ -77,8 +77,8 @@ run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"),
             system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
             " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, 
             "_trimmed.fastq -o ",destdir,"/salmon/", srr_id,
-            "_transcripts_quant"))			
-        } else {			
+            "_transcripts_quant"))
+        } else {
             system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
             " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, 
             "_pass.fastq -o ",destdir,"/salmon/",srr_id,

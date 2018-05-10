@@ -37,8 +37,10 @@ install Aspera(\url{http://www.asperasoft.com/}) for using
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-get_fastq(srr_id=srr_id, library_layout="SINGLE", get_sra_file=FALSE, 
-sra_files_dir=NULL, n_thread=2, destdir="/mnt/raid/test")
+get_fastq(srr_id=srr_id, library_layout="SINGLE",
+get_sra_file=FALSE, 
+sra_files_dir=NULL, n_thread=2,
+destdir="/mnt/raid/test")
 }
 
 }

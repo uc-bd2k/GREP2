@@ -36,7 +36,7 @@ get_metadata <- function(geo_series_acc) {
     gseurl <- "https://ftp.ncbi.nlm.nih.gov/geo/series/%s/%s/matrix/%s"
 
     if(length(nm)>1){
-        for (i in 1: length(nm)){
+        for (i in seq_len(length(nm))){
             myurl <- sprintf(gseurl, stub, geo_series_acc, 
                 paste0(geo_series_acc,"-",nm[i],"_series_matrix.txt.gz"))
             system(paste0("wget ", myurl))
