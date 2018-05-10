@@ -16,23 +16,43 @@ vignette: >
 
 ## GREP2 pipeline workflow
 
-To consistently process GEO RNA-seq datasets through a robust and uniform system, we have built GEO RNA-seq evenly processing pipeline (GREP2). The whole processing workflow can be summarized in the following steps:
+To consistently process GEO RNA-seq datasets through a robust and uniform 
+system, we have built GEO RNA-seq evenly processing pipeline (GREP2). The 
+whole processing workflow can be summarized in the following steps:
 
-1. The pipeline starts with a valid GEO series accession ID. Currently the pipeline works for human, mouse, and rat species. We then retrieve metadata for the GEO series accession using Bioconductor package GEOquery [@davis2007geoquery]. We also download metadata file from the sequence read archive (SRA) to get corresponding run information.
+1. The pipeline starts with a valid GEO series accession ID. Currently 
+the pipeline works for human, mouse, and rat species. We then retrieve 
+metadata for the GEO series accession using Bioconductor package GEOquery [@davis2007geoquery]. We also download metadata file from the sequence 
+read archive (SRA) to get corresponding run information.
 
-2. Download corresponding experiment run files from the SRA using `ascp` utility of [Aspera Connect](https://www.asperasoft.com). All the downloaded files are stored in the local repository until processed. You can skip this step by downloading fastq files directly.
+2. Download corresponding experiment run files from the SRA using `ascp` 
+utility of [Aspera Connect](https://www.asperasoft.com). All the downloaded
+files are stored in the local repository until processed. You can skip this
+step by downloading fastq files directly.
 
-3. Convert SRA files to fastq format using [NCBI SRA toolkit](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) or download fastq files directly. 
+3. Convert SRA files to fastq format using
+[NCBI SRA toolkit](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) or download fastq files directly. 
 
-4. Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on each fastq file to generate quality control (QC) reports.
+4. Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+on each fastq file to generate quality control (QC) reports.
 
-5. Remove adapter sequences if necessary using Trimmomatic [@bolger2014trimmomatic].
+5. Remove adapter sequences if necessary using 
+Trimmomatic [@bolger2014trimmomatic].
 
-6. Quantify transcript abundances using Salmon [@patro2017salmon]. Transcript level estimates are then summarized to gene level using Bioconductor package tximport [@soneson2015differential]. We obtained gene annotation for Homo sapiens (GRCh38), Mus musculus (GRCm38), and Rattus norvegicus (Rnor_6.0) from Ensemble (release-91).
+6. Quantify transcript abundances using Salmon [@patro2017salmon]. 
+Transcript level estimates are then summarized to gene level using 
+Bioconductor package tximport [@soneson2015differential].
+We obtained gene annotation for Homo sapiens (GRCh38), 
+Mus musculus (GRCm38), and Rattus norvegicus (Rnor_6.0)
+from Ensemble (release-91).
 
-7. Compile FastQC reports and Salmon log files into a single interactive HTML report using MultiQC [@ewels2016multiqc].  
+7. Compile FastQC reports and Salmon log files into a single
+interactive HTML report using MultiQC [@ewels2016multiqc].  
 
-You can run individual functions for each step or run the whole pipeline using `process_geo_rnaseq` function. To demonstrate the usage of the package, we will process a small dataset from GEO ( [GSE107363](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107363) ).
+You can run individual functions for each step or run the 
+whole pipeline using `process_geo_rnaseq` function. 
+To demonstrate the usage of the package, we will process 
+a small dataset from GEO ( [GSE107363](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107363) ).
   
 ```{r}
 #dataset
@@ -67,21 +87,32 @@ run_fastqc(destdir="/mnt/raid/test", fastq_dir="/mnt/raid/test/GSE107363/SRR6324
 
 # Step 5: Run Trimmomatic
 
-trim_fastq(srr_id="SRR6324192", fastq_dir="/mnt/raid/test/GSE107363/SRR6324192", instrument="HiSeq", trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE", n_thread=2)
+trim_fastq(srr_id="SRR6324192", 
+fastq_dir="/mnt/raid/test/GSE107363/SRR6324192", instrument="HiSeq", trimmomatic_path="path_to_trimmomtic",
+library_layout="SINGLE", n_thread=2)
 
 # Step 6: Run Salmon and tximport
-run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir="path_to_index_dir",destdir=".", fastq_dir="path_to_fastq_dir", use_trimmed_fastq=FALSE,other_opts=NULL, n_thread=2)
+run_salmon(srr_id="SRR6324192", library_layout="SINGLE", index_dir=
+             "path_to_index_dir",destdir=".",
+           fastq_dir="path_to_fastq_dir", 
+           use_trimmed_fastq=FALSE,other_opts=NULL, n_thread=2)
 
-run_tximport(srr_id="SRR6324192", species="human", salmon_dir="path_to_salmon_files_dir", countsFromAbundance = "lengthScaledTPM")
+run_tximport(srr_id="SRR6324192", species="human", salmon_dir="path_to_salmon_files_dir", 
+             countsFromAbundance = "lengthScaledTPM")
 
 # Step 7: Run MultiQC
-run_fastqc(destdir="/mnt/raid/test", fastq_dir="path_to_fatsq_dir", n_thread=2)
+run_fastqc(destdir="/mnt/raid/test", 
+           fastq_dir="path_to_fatsq_dir", n_thread=2)
 
 # You can also run the whole pipeline using the following function:
 process_geo_rnaseq (geo_series_acc="GSE107363", destdir=".", ascp=TRUE, 
-                    prefetch_workspace="./prefetch_workspace",ascp_path="~/.aspera",
-                    get_sra_file=FALSE, trim_fastq=FALSE, trimmomatic_path=NULL,index_dir="./human_transcripts_release92_index",
-                    other_opts=NULL,species="human", countsFromAbundance = "lengthScaledTPM", n_thread=2)
+                    prefetch_workspace="./prefetch_workspace",
+                    ascp_path="~/.aspera",
+                    get_sra_file=FALSE, trim_fastq=FALSE,
+                    trimmomatic_path=NULL,
+                    index_dir="./human_transcripts_release92_index",
+                    other_opts=NULL,species="human", 
+                    countsFromAbundance = "lengthScaledTPM", n_thread=2)
 ```
 
 
