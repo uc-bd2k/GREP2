@@ -26,8 +26,8 @@
 #' @examples
 #' srr_id="SRR6324192"
 #' \dontrun{
-#' get_srr(srr_id=srr_id, destdir="/mnt/raid/test", ascp=TRUE, 
-#' prefetch_workspace="/mnt/raid/test/prefetch_workspace", 
+#' get_srr(srr_id=srr_id, destdir="/mnt/raid/test",ascp=TRUE, 
+#' prefetch_workspace="/mnt/raid/test/prefetch_workspace",
 #' ascp_path="~/.aspera")
 #' }
 #'
@@ -60,8 +60,8 @@ get_srr <- function(srr_id,destdir,ascp=TRUE,prefetch_workspace,ascp_path){
                     '-k 1 -QT -l 400m' ", srr_id))
                 if (file.exists(paste0(prefetch_workspace,"/sra","/",
                     srr_id,".sra"))) break
-                cat(paste("All SRA files are downloaded successfully. 
-                    ",Sys.time(),"\n",sep=""))
+                cat(paste("All SRA files are downloaded successfully."
+                    ,Sys.time(),"\n",sep=""))
             }
         }
     } else {
@@ -72,7 +72,7 @@ get_srr <- function(srr_id,destdir,ascp=TRUE,prefetch_workspace,ascp_path){
             repeat {
                 system(paste0("wget -O ", destdir,"/",srr_id,"/",srr_id,
                     ".sra ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/
-                    reads/ByRun/sra/", substr(srr_id, 1,3),"/", 
+                    reads/ByRun/sra/", substr(srr_id, 1,3),"/",
                     substr(srr_id, 1,6),"/",srr_id, "/",srr_id,".sra"))
                 if (file.exists(paste0(destdir,"/",srr_id,"/",srr_id,
                     ".sra"))) break

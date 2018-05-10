@@ -24,7 +24,7 @@ reports and salmon read mapping results using MultiQC.
 destdir="/mnt/raid/test"
 fastq_dir="path_to_fatsq_dir"
 \dontrun{
-run_fastqc(destdir=destdir, fastq_dir=fastq_dir, n_thread=2)
+run_fastqc(destdir=destdir,fastq_dir=fastq_dir,n_thread=2)
 }
 
 }

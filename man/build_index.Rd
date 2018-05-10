@@ -23,8 +23,11 @@ directory of index files
 \code{build_index} for mapping reads using Salmon.
 }
 \examples{
-build_index(species="rat", kmer=31,
+species="rat"
+\dontrun{
+build_index(species=species, kmer=31,
 ens_release=92)
+}
 
 }
 \references{

@@ -14,7 +14,7 @@
 #' destdir="/mnt/raid/test"
 #' fastq_dir="/mnt/raid/test/GSE107363/SRR6324192"
 #' \dontrun{
-#' run_fastqc(destdir=destdir, fastq_dir=fastq_dir, n_thread=2)
+#' run_fastqc(destdir=destdir,fastq_dir=fastq_dir,n_thread=2)
 #' }
 #'
 #' @export
@@ -25,6 +25,6 @@ run_fastqc <- function(destdir, fastq_dir, n_thread ) {
     if(!dir.exists("fastqc")){
         system(paste0("mkdir ",destdir,"/fastqc"))
     }
-    system(paste0("fastqc -o ",destdir,"/fastqc/ --threads ",n_thread," ", 
+    system(paste0("fastqc -o ",destdir,"/fastqc/ --threads ",n_thread," ",
         fastq_files))
 }

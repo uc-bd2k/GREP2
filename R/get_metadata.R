@@ -37,13 +37,13 @@ get_metadata <- function(geo_series_acc) {
 
     if(length(nm)>1){
         for (i in seq_len(length(nm))){
-            myurl <- sprintf(gseurl, stub, geo_series_acc, 
+            myurl <- sprintf(gseurl, stub, geo_series_acc,
                 paste0(geo_series_acc,"-",nm[i],"_series_matrix.txt.gz"))
             system(paste0("wget ", myurl))
         }
-        geo_list_prim <- lapply(lapply(nm, function(x) 
-            GEOquery::getGEO(geo_series_acc, filename = 
-            paste0("./",geo_series_acc,"-",x ,"_series_matrix.txt.gz"), 
+        geo_list_prim <- lapply(lapply(nm, function(x)
+            GEOquery::getGEO(geo_series_acc, filename =
+            paste0("./",geo_series_acc,"-",x ,"_series_matrix.txt.gz"),
             GSEMatrix=TRUE,destdir = getwd() ,getGPL=FALSE)
             ),function(x) Biobase::pData(phenoData(x)))
         geo_list_sec <- lapply(geo_list_prim, function(x) 
@@ -51,16 +51,16 @@ get_metadata <- function(geo_series_acc) {
             colnames(x)))])
         geo_df <- do.call(rbind, geo_list_sec)
         closeAllConnections()
-        metadata_geo <- data.frame(lapply(geo_df, as.character), 
+        metadata_geo <- data.frame(lapply(geo_df, as.character),
             stringsAsFactors=FALSE)
     } else {
-        myurl <- sprintf(gseurl, stub, geo_series_acc, 
+        myurl <- sprintf(gseurl, stub, geo_series_acc,
             paste0(geo_series_acc,"_series_matrix.txt.gz"))
         system(paste0("wget ", myurl))
-        geo_df <- Biobase::pData(phenoData(getGEO(geo_series_acc, 
-            filename = paste0("./",geo_series_acc, "_series_matrix.txt.gz"), 
+        geo_df <- Biobase::pData(phenoData(getGEO(geo_series_acc,
+            filename = paste0("./",geo_series_acc, "_series_matrix.txt.gz"),
             GSEMatrix=TRUE,destdir = getwd() ,getGPL=FALSE)))
-        metadata_geo <- data.frame(lapply(geo_df, as.character), 
+        metadata_geo <- data.frame(lapply(geo_df, as.character),
             stringsAsFactors=FALSE)
     }
 
@@ -69,7 +69,7 @@ get_metadata <- function(geo_series_acc) {
     "_metadata.csv 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=
     efetch&db=sra&rettype=runinfo&term=",sra_study_acc,"'", sep=""))
     metadata_sra <- data.frame(lapply(utils::read.csv(file=
-        paste(geo_series_acc,"_metadata.csv", sep=""), header=TRUE), 
+        paste(geo_series_acc,"_metadata.csv", sep=""), header=TRUE),
         as.character), stringsAsFactors=FALSE)
 
     #system(paste("rm -rf *matrix.txt.gz *_metadata.csv *.gz"))

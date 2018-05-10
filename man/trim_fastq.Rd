@@ -44,8 +44,8 @@ the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-trim_fastq(srr_id=srr_id, fastq_dir=".", instrument="HiSeq", 
-trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE",
+trim_fastq(srr_id=srr_id,fastq_dir=".",instrument="HiSeq",
+trimmomatic_path="path_to_trimmomtic",library_layout="SINGLE",
 n_thread=2)
 }
 

@@ -39,8 +39,8 @@ You need to install Aspera for using \code{ascp} option.
 \examples{
 srr_id="SRR6324192"
 \dontrun{
-get_srr(srr_id=srr_id, destdir="/mnt/raid/test", ascp=TRUE, 
-prefetch_workspace="/mnt/raid/test/prefetch_workspace", 
+get_srr(srr_id=srr_id, destdir="/mnt/raid/test",ascp=TRUE, 
+prefetch_workspace="/mnt/raid/test/prefetch_workspace",
 ascp_path="~/.aspera")
 }
 

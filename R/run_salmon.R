@@ -83,21 +83,21 @@ run_salmon <- function(srr_id, library_layout=c("SINGLE","PAIRED"),
             " ",other_opts, " -l A -r ",fastq_dir,"/", srr_id, 
             "_pass.fastq -o ",destdir,"/salmon/",srr_id,
             "_transcripts_quant"))
-        }		
+        }
     } else {
         if(use_trimmed_fastq){
             system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
             " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id,
             "_trimmed_1.fastq ", "-2 ",fastq_dir,"/", srr_id,
             "_trimmed_2.fastq -o ",destdir,"/salmon/", srr_id,
-            "_transcripts_quant"))	
+            "_transcripts_quant"))
         } else {
             system(paste0("salmon quant -i ",index_dir, " -p ", n_thread,
             " ",other_opts, " -l A -1 ",fastq_dir,"/", srr_id,
             "_pass_1.fastq ", "-2 ",fastq_dir,"/", srr_id,
             "_pass_2.fastq -o ",destdir,"/salmon/", srr_id,
             "_transcripts_quant"))
-        }	
+        }
     }
     if (file.exists(destdir,"/salmon/",srr_id,
         "_transcripts_quant/quant.sf")) {

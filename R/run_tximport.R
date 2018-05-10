@@ -49,7 +49,7 @@
 #' @export 
 run_tximport <- function(srr_id, species=c("human","mouse","rat"),
     salmon_dir, countsFromAbundance = c("no","scaledTPM","lengthScaledTPM")){
-	
+
     countsFromAbundance <- match.arg(countsFromAbundance,
         c("no","scaledTPM","lengthScaledTPM"))
     species <- match.arg(species, c("human","mouse","rat"))
@@ -86,7 +86,7 @@ run_tximport <- function(srr_id, species=c("human","mouse","rat"),
     }
 
     assign('Tx.ensemble', edb(species))
-    Tx.ensemble <- get('Tx.ensemble')	
+    Tx.ensemble <- get('Tx.ensemble')
     tx2gene<- Tx.ensemble[,c(1,2)]
     files <- file.path(paste0(salmon_dir,"/",srr_id,"_transcripts_quant/",
         srr_id, "_quant_new.sf"))
@@ -105,15 +105,15 @@ run_tximport <- function(srr_id, species=c("human","mouse","rat"),
     txi.g <- tximport::summarizeToGene(txi.t, tx2gene)
 
     gene_counts <- txi.g$counts
-    gene_counts[is.na(gene_counts)]<-0	
+    gene_counts[is.na(gene_counts)]<-0
     colnames(gene_counts) <- srr_id
     transcript_counts <- txi.t$counts
-    transcript_counts[is.na(transcript_counts)]<-0	
+    transcript_counts[is.na(transcript_counts)]<-0
     colnames(transcript_counts) <- srr_id
 
     annot_genes <- AnnotationDbi::select(gene_ensembl(species),
         keys=rownames(gene_counts),columns=c("SYMBOL","SYMBOL", "GENENAME"),
-        keytype="ENSEMBL")	
+        keytype="ENSEMBL")
     annot_genes2 <- annot_genes[match(rownames(gene_counts),
     annot_genes[,1]),,drop=FALSE]
     gene_counts <- cbind(annot_genes2,gene_counts)

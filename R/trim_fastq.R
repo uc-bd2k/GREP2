@@ -35,13 +35,13 @@
 #' @examples
 #' srr_id="SRR6324192"
 #' \dontrun{
-#' trim_fastq(srr_id=srr_id, fastq_dir=".", instrument="HiSeq", 
-#' trimmomatic_path="path_to_trimmomtic", library_layout="SINGLE",
+#' trim_fastq(srr_id=srr_id,fastq_dir=".",instrument="HiSeq",
+#' trimmomatic_path="path_to_trimmomtic",library_layout="SINGLE",
 #' n_thread=2)
 #' }
 #'
 #' @export
-trim_fastq <- function(srr_id, fastq_dir, instrument, trimmomatic_path,
+trim_fastq <- function(srr_id,fastq_dir,instrument,trimmomatic_path,
     library_layout=c("SINGLE","PAIRED"), n_thread){
 
     adapters<- function(instrument) {
