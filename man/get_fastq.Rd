@@ -31,8 +31,7 @@ reads and two files for PAIRED end reads.
 \description{
 \code{get_fastq} downloads fastq files using SRA toolkit. 
 We recommend using Aspera for fast downloading. You need to 
-install Aspera(\url{http://www.asperasoft.com/}) for using 
-\code{ascp} option.
+install Aspera for using \code{ascp} option.
 }
 \examples{
 srr_id="SRR6324192"

@@ -31,8 +31,7 @@ If \code{ascp=FALSE}, then files will be saved in the
 \code{'destdir'}
 }
 \description{
-\code{get_srr} downloads SRA files using Aspera 
-(\url{http://www.asperasoft.com/}) or FTP. 
+\code{get_srr} downloads SRA files using Aspera or FTP. 
 We recommend using Aspera for fast downloading. 
 You need to install Aspera for using \code{ascp} option.
 }

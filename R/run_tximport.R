@@ -44,6 +44,7 @@
 #' @import org.Mm.eg.db
 #' @import org.Rn.eg.db
 #' @import tximport
+#' @importFrom GenomicFeatures transcripts
 #'
 #' @export 
 run_tximport <- function(srr_id, species=c("human","mouse","rat"),
@@ -54,17 +55,17 @@ salmon_dir,countsFromAbundance=c("no","scaledTPM","lengthScaledTPM")){
     species <- match.arg(species,c("human","mouse","rat"))
     edb= function(species) {
         if (species=="human") {
-            transcripts(
+            GenomicFeatures::transcripts(
             EnsDb.Hsapiens.v86::EnsDb.Hsapiens.v86,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")
         } else if (species=="mouse") {
-            transcripts(
+            GenomicFeatures::transcripts(
             EnsDb.Mmusculus.v79::EnsDb.Mmusculus.v79,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")
         } else if (species=="rat") {
-            transcripts(
+            GenomicFeatures::transcripts(
             EnsDb.Rnorvegicus.v79::EnsDb.Rnorvegicus.v79,
             columns=c("tx_id","gene_id","gene_name"),
             return.type="DataFrame")

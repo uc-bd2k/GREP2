@@ -1,19 +1,23 @@
 Package: GREP2
-Title: GEO RNA-seq Experiments Processing Pipeline
-Version: 0.99.11
-Author: Naim Mahi [cre,aut], Mario Medvedovic [aut, ctb]
+Title: GEO RNA-Seq Experiments Processing Pipeline
+Version: 0.99.1
+Authors@R: c(person("Naim", "Mahi", role = c("cre", "aut"),
+				email = "naim.al.mahi@gmail.com"),
+				person("Mario", "Medvedovic", role = c("aut", "ctb")))
 Maintainer: Naim Mahi <naim.al.mahi@gmail.com>
-Description: An R based pipeline to download and process GEO RNA-seq data. 
+Description: An R based pipeline to download and process Gene Expression Omnibus (GEO) RNA-seq data. 
     For a given GEO series accession ID, this pipeline generates 
     estimated read counts.
-Depends: R (>= 3.5)
+Depends: R (>= 3.4.0)
 Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport, 
     EnsDb.Hsapiens.v86, EnsDb.Rnorvegicus.v79, EnsDb.Mmusculus.v79,
-    AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, org.Rn.eg.db, utils
+    AnnotationDbi, org.Hs.eg.db, org.Mm.eg.db, org.Rn.eg.db, 
+	GenomicFeatures, utils
 Suggests: knitr, rmarkdown
+SystemRequirements: SRAtoolkit, Trimmomatic, Salmon, Java, FastQC, MultiQC
+URL: https://github.com/uc-bd2k/GREP2
+BugReports: https://github.com/uc-bd2k/GREP2/issues
 License: GPL (>= 3)
 VignetteBuilder: knitr
 LazyData: true
-biocViews: RNASeq, GeneExpression, Software, DataImport, 
-    Preprocessing, QualityControl, Alignment
 RoxygenNote: 6.0.1

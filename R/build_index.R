@@ -28,7 +28,7 @@
 #'
 build_index<-function(species=c("human","mouse","rat"),kmer=31,
 ens_release=92){
-    
+
     species <- match.arg(species, c("human","mouse","rat"))
 
     if(species=="human"){
