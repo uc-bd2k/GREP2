@@ -1,13 +1,14 @@
 Package: GREP2
+Type: Package
 Title: GEO RNA-Seq Experiments Processing Pipeline
 Version: 0.99.1
-Authors@R: c(person("Naim", "Mahi", role = c("cre", "aut"),
+Authors@R: c(person(given="Naim", family="Mahi", middle="Al", role = c("cre", "aut"),
 				email = "naim.al.mahi@gmail.com"),
-				person("Mario", "Medvedovic", role = c("aut", "ctb")))
-Maintainer: Naim Mahi <naim.al.mahi@gmail.com>
+				person(given="Mario", family="Medvedovic", role = c("aut", "ctb")))
+Maintainer: Naim Al Mahi <naim.al.mahi@gmail.com>
 Description: An R based pipeline to download and process Gene Expression Omnibus (GEO) RNA-seq data. 
-    For a given GEO series accession ID, this pipeline generates 
-    estimated read counts.
+    For a given GEO series accession ID, this pipeline generates metadata, 
+    both gene and transcript level counts, and QC report.
 Depends: R (>= 3.4.0)
 Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport, 
     EnsDb.Hsapiens.v86, EnsDb.Rnorvegicus.v79, EnsDb.Mmusculus.v79,
@@ -17,7 +18,7 @@ Suggests: knitr, rmarkdown
 SystemRequirements: SRAtoolkit, Trimmomatic, Salmon, Java, FastQC, MultiQC
 URL: https://github.com/uc-bd2k/GREP2
 BugReports: https://github.com/uc-bd2k/GREP2/issues
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 VignetteBuilder: knitr
 LazyData: true
 RoxygenNote: 6.0.1
