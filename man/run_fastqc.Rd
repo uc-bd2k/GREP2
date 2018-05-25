@@ -22,9 +22,10 @@ You need to install FastQC from
 \url{https://www.bioinformatics.babraham.ac.uk/projects/fastqc/}
 }
 \examples{
-destdir="/mnt/raid/test"
-\dontrun{
-run_fastqc(destdir=destdir,fastq_dir="/mnt/raid/test/",
+
+fastq_dir=system.file("extdata","", package="GREP2")
+\donttest{
+run_fastqc(destdir=tempdir(),fastq_dir=fastq_dir,
 n_thread=2)
 }
 

@@ -5,7 +5,7 @@
 \title{Trim fastq files using Trimmomatic}
 \usage{
 trim_fastq(srr_id, fastq_dir, instrument, trimmomatic_path,
-  library_layout = c("SINGLE", "PAIRED"), n_thread)
+  library_layout = c("SINGLE", "PAIRED"), destdir, n_thread)
 }
 \arguments{
 \item{srr_id}{SRA run accession ID.}
@@ -19,6 +19,8 @@ For example, \code{'HiSeq'}.}
 
 \item{library_layout}{layout of the library used. Either \code{'SINGLE'}
 or \code{'PAIRED'}.}
+
+\item{destdir}{directory where the trimmed fastq files will be saved.}
 
 \item{n_thread}{number of cores.}
 }
@@ -42,12 +44,12 @@ the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
 }
 }
 \examples{
-srr_id="SRR6324192"
-\dontrun{
-trim_fastq(srr_id=srr_id,fastq_dir=".",instrument="HiSeq",
-trimmomatic_path="path_to_trimmomtic",library_layout="SINGLE",
-n_thread=2)
-}
+
+fastq_dir=system.file("extdata","", package="GREP2")
+trimmomatic_path=system.file("extdata","trimmomatic-0.36.jar", package="GREP2")
+trim_fastq(srr_id="SRR5890521",fastq_dir=fastq_dir,
+instrument="MiSeq",trimmomatic_path=trimmomatic_path,
+library_layout="SINGLE",destdir=tempdir(),n_thread=2)
 
 }
 \references{

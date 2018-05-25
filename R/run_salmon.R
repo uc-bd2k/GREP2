@@ -54,11 +54,13 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' srr_id="SRR6324192"
-#' \dontrun{
-#' run_salmon(srr_id=srr_id,library_layout="SINGLE", 
-#' index_dir="path_to_index_dir",
-#' destdir=".",fastq_dir="path_to_fastq_dir",use_trimmed_fastq=FALSE,
+#'
+#' #You will have to build index first to run this function
+#' fastq_dir=system.file("extdata","", package="GREP2")
+#' \donttest{
+#' run_salmon(srr_id="SRR5890521",library_layout="SINGLE",
+#' index_dir="path_to_index_dir",destdir=tempdir(),
+#' fastq_dir=fastq_dir,use_trimmed_fastq=FALSE,
 #' other_opts=NULL,n_thread=2)
 #' }
 #'
@@ -99,8 +101,8 @@ other_opts=NULL, n_thread ) {
             "_transcripts_quant"))
         }
     }
-    if (file.exists(destdir,"/salmon/",srr_id,
-        "_transcripts_quant/quant.sf")) {
+    if (file.exists(paste0(destdir,"/salmon/",srr_id,
+        "_transcripts_quant/quant.sf"))) {
         system(paste("cat ",destdir,"/salmon/",srr_id,
         "_transcripts_quant/quant.sf","| sed -E 's/\\.[0-9]+//' > ",
         destdir,"/salmon/",srr_id,"_transcripts_quant","/",srr_id,

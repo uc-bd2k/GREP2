@@ -19,7 +19,7 @@
 #' you will find the location. Usually the default is
 #' \code{'/home/username/ncbi/public'}.
 #' @param ascp_path path to the Aspera software. 
-#' @param get_sra_file logical, whether to download SRA file first
+#' @param use_sra_file logical, whether to download SRA file first
 #' and get fastq files afterwards.
 #' @param trim_fastq logical, whether to trim fastq file. 
 #' @param trimmomatic_path path to Trimmomatic software.
@@ -61,13 +61,14 @@
 #' \url{https://doi.org/10.1093/bioinformatics/btw354} 
 #'
 #' @examples
-#' geo_series_acc="GSE107363"
-#' \dontrun{
-#' process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=".",
-#' ascp=TRUE,prefetch_workspace="path_to_prefetch_workspace",
-#' ascp_path="path_to_aspera",get_sra_file=FALSE,trim_fastq=FALSE,
+#' geo_series_acc="GSE102170"
+#' #You will have to build index first before running this function.
+#' \donttest{
+#' process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
+#' ascp=FALSE,prefetch_workspace=NULL,
+#' ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
 #' trimmomatic_path=NULL,index_dir="path_to_indexDir",
-#' species="human",countsFromAbundance="lengthScaledTPM",n_thread=2)
+#' species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
 #' }
 #'
 #' @importFrom parallel mclapply
@@ -76,12 +77,12 @@
 #' @export 
 process_geo_rnaseq <- function(geo_series_acc,destdir,
     ascp=TRUE,prefetch_workspace,ascp_path,
-    get_sra_file=FALSE,trim_fastq=FALSE,
+    use_sra_file=FALSE,trim_fastq=FALSE,
     trimmomatic_path=NULL,index_dir,
     other_opts=NULL,species=c("human","mouse","rat"),
     countsFromAbundance=
     c("no","scaledTPM","lengthScaledTPM"),
-    n_thread=2) {
+    n_thread) {
 
     system(paste0("mkdir ",destdir,"/",geo_series_acc))
     destdir <- paste0(destdir,"/",geo_series_acc,"/")
@@ -101,7 +102,7 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
         c("no","scaledTPM","lengthScaledTPM"))
     species <- match.arg(species,c("human","mouse","rat"))
 
-    if(get_sra_file) {
+    if(use_sra_file) {
         cat(paste("Downloading SRA files... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
             get_srr(srr_id[i],destdir,ascp,prefetch_workspace,
@@ -115,37 +116,37 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
         cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
         sra_files_dir <- paste0(prefetch_workspace,"/sra/")
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
-            get_fastq(srr_id[i],library_layout[i],get_sra_file,
+            get_fastq(srr_id[i],library_layout[i],use_sra_file,
             sra_files_dir,n_thread,destdir)
         }, mc.cores=n_thread)
     } else {
         cat(paste("Downloading fastq files... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
             sra_files_dir <- paste0(destdir,"/",srr_id[i])
-            get_fastq(srr_id[i],library_layout[i],get_sra_file,
+            get_fastq(srr_id[i],library_layout[i],use_sra_file,
             sra_files_dir,n_thread,destdir)
         }, mc.cores=n_thread)
     }
 
     cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
     parallel::mclapply(seq_len(length(srr_id)),function(i) {
-        fastq_dir <- paste0(destdir,"/",srr_id[i])
+        fastq_dir <- destdir
         run_fastqc(destdir,fastq_dir,n_thread )
     }, mc.cores=n_thread)
 
     if(trim_fastq){
         cat(paste("Trimming fastq... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
-            fastq_dir <- paste0(destdir,"/",srr_id[i])
+            fastq_dir <- destdir
             trim_fastq (srr_id[i],fastq_dir,instrument,
-            trimmomatic_path,library_layout[i],n_thread)
+            trimmomatic_path,library_layout[i],destdir,n_thread)
         }, mc.cores=n_thread)
     }
     use_trimmed_fastq= if(trim_fastq){TRUE} else {FALSE}
 
     cat(paste("Running Salmon and tximport... ",Sys.time(),"\n",sep=""))
     parallel::mclapply(seq_len(length(srr_id)),function(i) {
-        fastq_dir <- paste0(destdir,"/",srr_id[i])
+        fastq_dir <- destdir
         run_salmon (srr_id[i],library_layout[i],index_dir,
         destdir,fastq_dir,use_trimmed_fastq,other_opts,n_thread)
     }, mc.cores=n_thread)

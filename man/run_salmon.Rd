@@ -65,11 +65,13 @@ for multiple samples.
 For other options from Salmon use \code{'other_opts'}.
 }
 \examples{
-srr_id="SRR6324192"
-\dontrun{
-run_salmon(srr_id=srr_id,library_layout="SINGLE", 
-index_dir="path_to_index_dir",
-destdir=".",fastq_dir="path_to_fastq_dir",use_trimmed_fastq=FALSE,
+
+#You will have to build index first to run this function
+fastq_dir=system.file("extdata","", package="GREP2")
+\donttest{
+run_salmon(srr_id="SRR5890521",library_layout="SINGLE",
+index_dir="path_to_index_dir",destdir=tempdir(),
+fastq_dir=fastq_dir,use_trimmed_fastq=FALSE,
 other_opts=NULL,n_thread=2)
 }
 

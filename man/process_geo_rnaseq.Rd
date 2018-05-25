@@ -5,10 +5,10 @@
 \title{A complete pipeline to process GEO RNA-seq data}
 \usage{
 process_geo_rnaseq(geo_series_acc, destdir, ascp = TRUE, prefetch_workspace,
-  ascp_path, get_sra_file = FALSE, trim_fastq = FALSE,
+  ascp_path, use_sra_file = FALSE, trim_fastq = FALSE,
   trimmomatic_path = NULL, index_dir, other_opts = NULL,
   species = c("human", "mouse", "rat"), countsFromAbundance = c("no",
-  "scaledTPM", "lengthScaledTPM"), n_thread = 2)
+  "scaledTPM", "lengthScaledTPM"), n_thread)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
@@ -29,7 +29,7 @@ you will find the location. Usually the default is
 
 \item{ascp_path}{path to the Aspera software.}
 
-\item{get_sra_file}{logical, whether to download SRA file first
+\item{use_sra_file}{logical, whether to download SRA file first
 and get fastq files afterwards.}
 
 \item{trim_fastq}{logical, whether to trim fastq file.}
@@ -69,13 +69,14 @@ We use SRA toolkit for downloading SRA data, Trimmomatic for read
 trimming (optional), and Salmon for read mapping.
 }
 \examples{
-geo_series_acc="GSE107363"
-\dontrun{
-process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=".",
-ascp=TRUE,prefetch_workspace="path_to_prefetch_workspace",
-ascp_path="path_to_aspera",get_sra_file=FALSE,trim_fastq=FALSE,
+geo_series_acc="GSE102170"
+#You will have to build index first before running this function.
+\donttest{
+process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
+ascp=FALSE,prefetch_workspace=NULL,
+ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
 trimmomatic_path=NULL,index_dir="path_to_indexDir",
-species="human",countsFromAbundance="lengthScaledTPM",n_thread=2)
+species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
 }
 
 }

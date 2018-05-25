@@ -13,7 +13,8 @@ run_tximport(srr_id, species = c("human", "mouse", "rat"), salmon_dir,
 \item{species}{name of the species. Only \code{'human'}, \code{'mouse'},
 and \code{'rat'} are allowed to use.}
 
-\item{salmon_dir}{directory where salmon files are saved.}
+\item{salmon_dir}{directory where salmon files are saved. This should be 
+the folder created by Salmon and is called "salmon".}
 
 \item{countsFromAbundance}{whether to generate counts based on abundance.
 Available options are: \code{'no'}, 
@@ -35,11 +36,11 @@ package
 We use Ensembl annotation for both genes and transcripts.
 }
 \examples{
-srr_id="SRR6324192"
-\dontrun{
-run_tximport(srr_id=srr_id, species="human",salmon_dir=
-"path_to_salmon_files_dir",countsFromAbundance="lengthScaledTPM")
-}
+
+#Run this function after running Salmon.
+salmon_dir=system.file("extdata","", package="GREP2")
+run_tximport(srr_id="SRR5890521", species="human",
+salmon_dir=salmon_dir,countsFromAbundance="lengthScaledTPM")
 
 }
 \references{

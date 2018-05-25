@@ -5,7 +5,7 @@
 \title{Download fastq files}
 \usage{
 get_fastq(srr_id, library_layout = c("SINGLE", "PAIRED"),
-  get_sra_file = FALSE, sra_files_dir = NULL, n_thread, destdir)
+  use_sra_file = FALSE, sra_files_dir = NULL, n_thread, destdir)
 }
 \arguments{
 \item{srr_id}{SRA run accession ID.}
@@ -13,12 +13,12 @@ get_fastq(srr_id, library_layout = c("SINGLE", "PAIRED"),
 \item{library_layout}{layout of the library used. Either 
 \code{'SINGLE'} or \code{'PAIRED'}.}
 
-\item{get_sra_file}{logical, whether to download SRA file
-first and get fastq files afterwards or directly download
+\item{use_sra_file}{logical, whether to use downloaded SRA
+files to get fastq files or directly download
 fastq files.}
 
 \item{sra_files_dir}{directory where SRA files are saved.
-If you use \code{get_sra_file=FALSE} then \code{sra_files_dir=NULL}.}
+If you use \code{use_sra_file=FALSE} then \code{sra_files_dir=NULL}.}
 
 \item{n_thread}{number of cores to use.}
 
@@ -34,12 +34,11 @@ We recommend using Aspera for fast downloading. You need to
 install Aspera for using \code{ascp} option.
 }
 \examples{
-srr_id="SRR6324192"
-\dontrun{
-get_fastq(srr_id=srr_id,library_layout="SINGLE",
-get_sra_file=FALSE,
-sra_files_dir=NULL,n_thread=2,
-destdir="/mnt/raid/test")
+
+\donttest{
+get_fastq(srr_id="SRR5890521",library_layout="SINGLE",
+use_sra_file=FALSE,sra_files_dir=NULL,n_thread=2,
+destdir=tempdir())
 }
 
 }

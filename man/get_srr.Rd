@@ -4,7 +4,7 @@
 \alias{get_srr}
 \title{Download SRA run files}
 \usage{
-get_srr(srr_id, destdir, ascp = TRUE, prefetch_workspace, ascp_path)
+get_srr(srr_id, destdir, ascp, prefetch_workspace, ascp_path)
 }
 \arguments{
 \item{srr_id}{SRA run accession ID.}
@@ -36,11 +36,10 @@ We recommend using Aspera for fast downloading.
 You need to install Aspera for using \code{ascp} option.
 }
 \examples{
-srr_id="SRR6324192"
-\dontrun{
-get_srr(srr_id=srr_id, destdir="/mnt/raid/test",ascp=TRUE, 
-prefetch_workspace="/mnt/raid/test/prefetch_workspace",
-ascp_path="~/.aspera")
+
+\donttest{
+get_srr(srr_id="SRR5890521", destdir=tempdir(),ascp=FALSE,
+prefetch_workspace=NULL, ascp_path=NULL)
 }
 
 }

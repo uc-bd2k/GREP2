@@ -10,7 +10,8 @@
 #' @param srr_id SRA run accession ID.
 #' @param species name of the species. Only \code{'human'}, \code{'mouse'},
 #' and \code{'rat'} are allowed to use.
-#' @param salmon_dir directory where salmon files are saved.
+#' @param salmon_dir directory where salmon files are saved. This should be 
+#' the folder created by Salmon and is called "salmon". 
 #' @param countsFromAbundance whether to generate counts based on abundance.
 #' Available options are: \code{'no'}, 
 #' \code{'scaledTPM'} (abundance based estimated counts scaled up to
@@ -28,11 +29,11 @@
 #' \url{http://dx.doi.org/10.12688/f1000research.7563.1}
 #' 
 #' @examples
-#' srr_id="SRR6324192"
-#' \dontrun{
-#' run_tximport(srr_id=srr_id, species="human",salmon_dir=
-#' "path_to_salmon_files_dir",countsFromAbundance="lengthScaledTPM")
-#' }
+#'
+#' #Run this function after running Salmon.
+#' salmon_dir=system.file("extdata","", package="GREP2")
+#' run_tximport(srr_id="SRR5890521", species="human",
+#' salmon_dir=salmon_dir,countsFromAbundance="lengthScaledTPM")
 #'
 #' @importFrom AnnotationDbi select
 #' @importFrom utils read.delim

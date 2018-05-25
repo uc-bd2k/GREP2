@@ -18,9 +18,10 @@
 #' \url{https://www.nature.com/articles/nmeth.4197}
 #'
 #' @examples
-#' species="human"
-#' \dontrun{
-#' build_index(species=species,kmer=31,
+#'
+#' #Running this function will take some time.
+#' \donttest{
+#' build_index(species="human",kmer=31,
 #' ens_release=92)
 #' }
 #'

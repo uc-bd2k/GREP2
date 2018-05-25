@@ -11,9 +11,10 @@
 #' @return HTML report of the fastq files under fastqc directory.
 #' 
 #' @examples
-#' destdir="/mnt/raid/test"
-#' \dontrun{
-#' run_fastqc(destdir=destdir,fastq_dir="/mnt/raid/test/",
+#'
+#' fastq_dir=system.file("extdata","", package="GREP2")
+#' \donttest{
+#' run_fastqc(destdir=tempdir(),fastq_dir=fastq_dir,
 #' n_thread=2)
 #' }
 #'

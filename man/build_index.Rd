@@ -23,9 +23,10 @@ directory of index files
 \code{build_index} for mapping reads using Salmon.
 }
 \examples{
-species="human"
-\dontrun{
-build_index(species=species,kmer=31,
+
+#Running this function will take some time.
+\donttest{
+build_index(species="human",kmer=31,
 ens_release=92)
 }
 
