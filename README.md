@@ -13,10 +13,9 @@ Before installing `GREP2`, you need to install the following software packages f
 
 1. [SRA toolkit](http://www.sthda.com/english/wiki/install-sra-toolkit)
 2. [Aspera-connect](http://download.asperasoft.com/download/docs/connect/2.3/aspera-connect-linux.html#installation)
-3. [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
-4. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/seqmonk/INSTALL.txt)
-5. [Salmon](http://salmon.readthedocs.io/en/latest/building.html)
-6. [MultiQC](https://github.com/ewels/MultiQC/blob/master/docs/installation.md)
+3. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/seqmonk/INSTALL.txt)
+4. [Salmon](http://salmon.readthedocs.io/en/latest/building.html)
+5. [MultiQC](https://github.com/ewels/MultiQC/blob/master/docs/installation.md)
 
 You will also need to install the following R and Bioconductor packages:
 ```
