@@ -4,10 +4,12 @@
 \alias{get_metadata}
 \title{Download metadata from GEO and SRA}
 \usage{
-get_metadata(geo_series_acc)
+get_metadata(geo_series_acc, destdir)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
+
+\item{destdir}{directory where the metadata files will be saved.}
 }
 \value{
 a list of GEO and SRA metadata.
@@ -17,6 +19,6 @@ Download metadata from GEO and SRA
 }
 \examples{
 
-get_metadata(geo_series_acc="GSE102170")
+get_metadata(geo_series_acc="GSE102170", destdir=tempdir())
 
 }

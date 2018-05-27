@@ -16,8 +16,8 @@ Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport,
 	GenomicFeatures, utils
 Suggests: knitr, rmarkdown
 SystemRequirements: SRAtoolkit, Salmon, Java, FastQC, MultiQC
-URL: <https://github.com/uc-bd2k/GREP2>
-BugReports: <https://github.com/uc-bd2k/GREP2/issues>
+URL: https://github.com/uc-bd2k/GREP2
+BugReports: https://github.com/uc-bd2k/GREP2/issues
 License: GPL-3
 VignetteBuilder: knitr
 LazyData: true
