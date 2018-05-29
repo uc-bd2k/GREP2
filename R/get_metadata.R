@@ -2,22 +2,26 @@
 #'
 #' @param geo_series_acc GEO series accession ID.
 #' @param destdir directory where the metadata files will be saved.
+#' @param download_method download method for GEOquery.
+#' See \code{'download.file'} from R package \link[utils]{utils} 
+#' for details. Default is 'libcurl'.
 #'
 #' @return a list of GEO and SRA metadata. 
 #' 
 #' @examples
 #'
-#' get_metadata(geo_series_acc="GSE102170", destdir=tempdir())
+#' get_metadata(geo_series_acc="GSE102170", destdir=tempdir(),
+#' download_method="libcurl")
 #'
 #' @importFrom rentrez entrez_search
 #' @importFrom XML xmlRoot xmlValue xmlTreeParse getNodeSet
 #' @importFrom RCurl getURL
 #' @importFrom GEOquery getGEO
 #' @importFrom Biobase phenoData pData 
-#' @importFrom utils read.csv
+#' @importFrom utils read.csv download.file
 #'
 #' @export 
-get_metadata <- function(geo_series_acc, destdir) {
+get_metadata <- function(geo_series_acc,destdir,download_method="libcurl") {
 
     options(warn=-1)
     geo_id <- rentrez::entrez_search(db="gds",term=geo_series_acc)$ids[[1]]
@@ -28,6 +32,7 @@ get_metadata <- function(geo_series_acc, destdir) {
         "//DocSum//Item//Item//Item[@Name='TargetObject']")[1][[1]])
 
     # GEO metadata
+	options(download.file.method.GEOquery=download_method)
     x <- GEOquery::getGEO(geo_series_acc, AnnotGPL=FALSE,GSEMatrix=FALSE,
         destdir = destdir ,getGPL=FALSE)
     nm <- names(x@gpls)
@@ -55,24 +60,27 @@ get_metadata <- function(geo_series_acc, destdir) {
     } else {
         myurl <- sprintf(gseurl, stub, geo_series_acc,
             paste0(geo_series_acc,"_series_matrix.txt.gz"))
-        system(paste0("wget -O ",destdir,"/",
-        paste0(geo_series_acc,"_series_matrix.txt.gz")," ",myurl))
+        #system(paste0("wget -O ",destdir,"/",
+        #paste0(geo_series_acc,"_series_matrix.txt.gz")," ",myurl))
+        utils::download.file(myurl, destfile=paste0(destdir,"/",
+		geo_series_acc,"_series_matrix.txt.gz"),method=download_method)
         geo_df <- Biobase::pData(phenoData(getGEO(geo_series_acc,
             filename = paste0(destdir,"/",geo_series_acc, "_series_matrix.txt.gz"),
             GSEMatrix=TRUE,destdir = destdir ,getGPL=FALSE)))
         metadata_geo <- data.frame(lapply(geo_df, as.character),
             stringsAsFactors=FALSE)
     }
-
     # SRA metadata
-    system(paste("wget -O ",destdir,"/",geo_series_acc,
-    "_metadata.csv 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=",
-    "efetch&db=sra&rettype=runinfo&term=",sra_study_acc,"'", sep=""))
+	sra_url<-paste0("http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=",
+    "efetch&db=sra&rettype=runinfo&term=",sra_study_acc)
+	utils::download.file(sra_url, destfile=paste0(destdir,"/",
+		geo_series_acc,"_metadata.csv"),method=download_method)
+    #system(paste("wget -O ",destdir,"/",geo_series_acc,
+    #"_metadata.csv 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=",
+    #"efetch&db=sra&rettype=runinfo&term=",sra_study_acc,"'", sep=""))
     metadata_sra <- data.frame(lapply(utils::read.csv(file=
         paste(destdir,"/",geo_series_acc,"_metadata.csv", sep=""), header=TRUE),
         as.character), stringsAsFactors=FALSE)
-
-    #system(paste("rm -rf *matrix.txt.gz *_metadata.csv *.gz"))
     metadata <- list(metadata_geo=metadata_geo, metadata_sra=metadata_sra)
 	save(metadata, file=paste0(destdir,"/metadata.rda"))
     return(metadata)

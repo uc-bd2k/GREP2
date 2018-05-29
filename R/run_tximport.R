@@ -2,8 +2,7 @@
 #'
 #' \code{run_tximport} function runs tximport on transcript level
 #' abundances from Salmon to summarize to gene level. See Bioconductor
-#' package
-#' \link[tximport]{tximport} for details.
+#' package \link[tximport]{tximport} for details.
 #'
 #' We use Ensembl annotation for both genes and transcripts. 
 #' 

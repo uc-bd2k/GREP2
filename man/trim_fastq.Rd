@@ -45,11 +45,13 @@ the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
 }
 \examples{
 
+\donttest{
 fastq_dir=system.file("extdata","", package="GREP2")
 trimmomatic_path=system.file("java","trimmomatic-0.36.jar", package="GREP2")
 trim_fastq(srr_id="SRR5890521",fastq_dir=fastq_dir,
 instrument="MiSeq",trimmomatic_path=trimmomatic_path,
 library_layout="SINGLE",destdir=tempdir(),n_thread=2)
+}
 
 }
 \references{
