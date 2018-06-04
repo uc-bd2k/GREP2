@@ -8,6 +8,7 @@
 #'
 #' @param geo_series_acc GEO series accession ID.
 #' @param destdir directory where all the results will be saved.
+#' @param download_method download method for GEOquery.
 #' @param ascp logical, whether to use Aspera connect to download SRA
 #' run files. If FALSE, then wget will be used to download files which
 #' might be slower than \code{'ascp'} download.
@@ -21,7 +22,7 @@
 #' @param ascp_path path to the Aspera software. 
 #' @param use_sra_file logical, whether to download SRA file first
 #' and get fastq files afterwards.
-#' @param trim_fastq logical, whether to trim fastq file. 
+#' @param trim_fastq logical, whether to trim fastq file.
 #' @param trimmomatic_path path to Trimmomatic software.
 #' @param index_dir directory of the indexing files needed for read
 #' mapping using Salmon. See function \code{'build_index'}.
@@ -64,10 +65,13 @@
 #' geo_series_acc="GSE102170"
 #' #You will have to build index first before running this function.
 #' \donttest{
+#' build_index(species="human",kmer=31,ens_release=92,
+#' destdir=tempdir())
 #' process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
+#' download_method="auto",
 #' ascp=FALSE,prefetch_workspace=NULL,
 #' ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
-#' trimmomatic_path=NULL,index_dir="path_to_indexDir",
+#' trimmomatic_path=NULL,index_dir=tempdir(),
 #' species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
 #' }
 #'
@@ -76,6 +80,7 @@
 #'
 #' @export 
 process_geo_rnaseq <- function(geo_series_acc,destdir,
+    download_method="auto",
     ascp=TRUE,prefetch_workspace,ascp_path,
     use_sra_file=FALSE,trim_fastq=FALSE,
     trimmomatic_path=NULL,index_dir,
@@ -88,7 +93,8 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
     destdir <- paste0(destdir,"/",geo_series_acc,"/")
 
     cat(paste("Downloading metadata... ",Sys.time(),"\n",sep=""))
-    metadata <- get_metadata(geo_series_acc)
+    metadata <- get_metadata(geo_series_acc,destdir,
+    geo_only=FALSE,download_method)
     metadata$metadata_geo <- metadata$metadata_geo[which(
         metadata$metadata_geo$library_strategy=="RNA-Seq"),]
     metadata$metadata_sra <- metadata$metadata_sra[which(

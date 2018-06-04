@@ -1,11 +1,11 @@
 Package: GREP2
 Type: Package
 Title: GEO RNA-Seq Experiments Processing Pipeline
-Version: 0.99.1
+Version: 0.99.9
 Authors@R: c(person("Naim Al", "Mahi", role = c("cre", "aut"),
-				email = "naim.al.mahi@gmail.com"),
+				email = "mahina@mail.uc.edu"),
 				person("Mario", "Medvedovic", role = c("aut", "ctb")))
-Maintainer: Naim Al Mahi <naim.al.mahi@gmail.com>
+Maintainer: Naim Al Mahi <mahina@mail.uc.edu>
 Description: An R based pipeline to download and process Gene Expression Omnibus (GEO) RNA-seq data. 
     For a given GEO series accession ID, this pipeline generates metadata, 
     both gene and transcript level counts, and quality control (QC) report.

@@ -5,7 +5,7 @@
 \title{Build index for mapping using Salmon}
 \usage{
 build_index(species = c("human", "mouse", "rat"), kmer = 31,
-  ens_release = 92)
+  ens_release = 92, destdir)
 }
 \arguments{
 \item{species}{name of the species. Only \code{'human'}, \code{'mouse'}, 
@@ -15,6 +15,8 @@ and \code{'rat'} are allowed to use.}
 for details.}
 
 \item{ens_release}{version of Ensembl release.}
+
+\item{destdir}{directory where all the files will be saved.}
 }
 \value{
 directory of index files
@@ -27,7 +29,7 @@ directory of index files
 #Running this function will take some time.
 \donttest{
 build_index(species="human",kmer=31,
-ens_release=92)
+ens_release=92,destdir=tempdir())
 }
 
 }

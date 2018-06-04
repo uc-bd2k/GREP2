@@ -4,7 +4,8 @@ The Gene Expression Omnibus ([GEO](https://www.ncbi.nlm.nih.gov/geo/)) is a publ
 that hosts more than 6,000 RNA-seq datasets and this number is increasing. Most of these datasets are deposited in raw sequencing 
 format which needs to be downloaded and processed. With an aim to transform all these datasets in an analysis-ready format, 
 we have developed a comprehensive pipeline to simultaneously download and process RNA-seq data sets from GEO. 
-This R-based automated pipeline can process the available RNA-seq data of human, mouse, and rat from GEO.
+This R-based automated pipeline can process the available RNA-seq data of human, mouse, and rat from GEO. This package is 
+recommended to use in the unix environment as many of the features are not available in windows.
 
 ---
 ## Installation

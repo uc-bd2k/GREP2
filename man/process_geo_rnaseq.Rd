@@ -4,16 +4,18 @@
 \alias{process_geo_rnaseq}
 \title{A complete pipeline to process GEO RNA-seq data}
 \usage{
-process_geo_rnaseq(geo_series_acc, destdir, ascp = TRUE, prefetch_workspace,
-  ascp_path, use_sra_file = FALSE, trim_fastq = FALSE,
-  trimmomatic_path = NULL, index_dir, other_opts = NULL,
-  species = c("human", "mouse", "rat"), countsFromAbundance = c("no",
-  "scaledTPM", "lengthScaledTPM"), n_thread)
+process_geo_rnaseq(geo_series_acc, destdir, download_method = "auto",
+  ascp = TRUE, prefetch_workspace, ascp_path, use_sra_file = FALSE,
+  trim_fastq = FALSE, trimmomatic_path = NULL, index_dir,
+  other_opts = NULL, species = c("human", "mouse", "rat"),
+  countsFromAbundance = c("no", "scaledTPM", "lengthScaledTPM"), n_thread)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
 
 \item{destdir}{directory where all the results will be saved.}
+
+\item{download_method}{download method for GEOquery.}
 
 \item{ascp}{logical, whether to use Aspera connect to download SRA
 run files. If FALSE, then wget will be used to download files which
@@ -72,10 +74,13 @@ trimming (optional), and Salmon for read mapping.
 geo_series_acc="GSE102170"
 #You will have to build index first before running this function.
 \donttest{
+build_index(species="human",kmer=31,ens_release=92,
+destdir=tempdir())
 process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
+download_method="auto",
 ascp=FALSE,prefetch_workspace=NULL,
 ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
-trimmomatic_path=NULL,index_dir="path_to_indexDir",
+trimmomatic_path=NULL,index_dir=tempdir(),
 species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
 }
 

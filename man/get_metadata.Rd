@@ -4,12 +4,17 @@
 \alias{get_metadata}
 \title{Download metadata from GEO and SRA}
 \usage{
-get_metadata(geo_series_acc, destdir, download_method = "libcurl")
+get_metadata(geo_series_acc, destdir, geo_only = FALSE,
+  download_method = "auto")
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
 
 \item{destdir}{directory where the metadata files will be saved.}
+
+\item{geo_only}{logical, whether to download GEO metadata only.
+Default is FALSE. If TRUE, then SRA metadata will not be
+downloaded.}
 
 \item{download_method}{download method for GEOquery.
 See \code{'download.file'} from R package \link[utils]{utils} 
@@ -23,7 +28,7 @@ Download metadata from GEO and SRA
 }
 \examples{
 
-get_metadata(geo_series_acc="GSE102170", destdir=tempdir(),
-download_method="libcurl")
+get_metadata(geo_series_acc="GSE102170",destdir=tempdir(),
+geo_only=TRUE,download_method="auto")
 
 }
