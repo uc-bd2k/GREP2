@@ -18,7 +18,6 @@
 #' @param fastq_dir directory of the fastq files.
 #' @param instrument name of the illumina sequencing platform.
 #' For example, \code{'HiSeq'}. 
-#' @param trimmomatic_path path to the Trimmomatic software.
 #' @param library_layout layout of the library used. Either \code{'SINGLE'}
 #' or \code{'PAIRED'}.
 #' @param destdir directory where the trimmed fastq files will be saved.
@@ -37,16 +36,16 @@
 #'
 #' \donttest{
 #' fastq_dir=system.file("extdata","", package="GREP2")
-#' trimmomatic_path=system.file("java","trimmomatic-0.36.jar", package="GREP2")
 #' trim_fastq(srr_id="SRR5890521",fastq_dir=fastq_dir,
-#' instrument="MiSeq",trimmomatic_path=trimmomatic_path,
-#' library_layout="SINGLE",destdir=tempdir(),n_thread=2)
+#' instrument="MiSeq",library_layout="SINGLE",
+#' destdir=tempdir(),n_thread=2)
 #' }
 #'
 #' @export
-trim_fastq <- function(srr_id,fastq_dir,instrument,trimmomatic_path,
+trim_fastq <- function(srr_id,fastq_dir,instrument,
 library_layout=c("SINGLE","PAIRED"),destdir,n_thread){
 
+	trimmomatic_path=system.file("java","trimmomatic-0.36.jar", package="GREP2")
     adapters<- function(instrument) {
         if (grepl("HiSeq|MiSeq",instrument)) {	
             if (library_layout=="SINGLE") {

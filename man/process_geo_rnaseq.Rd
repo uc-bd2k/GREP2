@@ -6,9 +6,9 @@
 \usage{
 process_geo_rnaseq(geo_series_acc, destdir, download_method = "auto",
   ascp = TRUE, prefetch_workspace, ascp_path, use_sra_file = FALSE,
-  trim_fastq = FALSE, trimmomatic_path = NULL, index_dir,
-  other_opts = NULL, species = c("human", "mouse", "rat"),
-  countsFromAbundance = c("no", "scaledTPM", "lengthScaledTPM"), n_thread)
+  trim_fastq = FALSE, index_dir, other_opts = NULL, species = c("human",
+  "mouse", "rat"), countsFromAbundance = c("no", "scaledTPM",
+  "lengthScaledTPM"), n_thread)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
@@ -35,8 +35,6 @@ you will find the location. Usually the default is
 and get fastq files afterwards.}
 
 \item{trim_fastq}{logical, whether to trim fastq file.}
-
-\item{trimmomatic_path}{path to Trimmomatic software.}
 
 \item{index_dir}{directory of the indexing files needed for read
 mapping using Salmon. See function \code{'build_index'}.}
@@ -80,8 +78,8 @@ process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
 download_method="auto",
 ascp=FALSE,prefetch_workspace=NULL,
 ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
-trimmomatic_path=NULL,index_dir=tempdir(),
-species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
+index_dir=tempdir(),species="human",
+countsFromAbundance="lengthScaledTPM",n_thread=1)
 }
 
 }

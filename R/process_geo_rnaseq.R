@@ -23,7 +23,6 @@
 #' @param use_sra_file logical, whether to download SRA file first
 #' and get fastq files afterwards.
 #' @param trim_fastq logical, whether to trim fastq file.
-#' @param trimmomatic_path path to Trimmomatic software.
 #' @param index_dir directory of the indexing files needed for read
 #' mapping using Salmon. See function \code{'build_index'}.
 #' @param other_opts options other than default to use for read mapping.
@@ -71,8 +70,8 @@
 #' download_method="auto",
 #' ascp=FALSE,prefetch_workspace=NULL,
 #' ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
-#' trimmomatic_path=NULL,index_dir=tempdir(),
-#' species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
+#' index_dir=tempdir(),species="human",
+#' countsFromAbundance="lengthScaledTPM",n_thread=1)
 #' }
 #'
 #' @importFrom parallel mclapply
@@ -83,8 +82,8 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
     download_method="auto",
     ascp=TRUE,prefetch_workspace,ascp_path,
     use_sra_file=FALSE,trim_fastq=FALSE,
-    trimmomatic_path=NULL,index_dir,
-    other_opts=NULL,species=c("human","mouse","rat"),
+    index_dir,other_opts=NULL,
+	species=c("human","mouse","rat"),
     countsFromAbundance=
     c("no","scaledTPM","lengthScaledTPM"),
     n_thread) {
@@ -144,8 +143,8 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
         cat(paste("Trimming fastq... ",Sys.time(),"\n",sep=""))
         parallel::mclapply(seq_len(length(srr_id)),function(i) {
             fastq_dir <- destdir
-            trim_fastq (srr_id[i],fastq_dir,instrument,
-            trimmomatic_path,library_layout[i],destdir,n_thread)
+            trim_fastq(srr_id[i],fastq_dir,instrument,
+            library_layout[i],destdir,n_thread)
         }, mc.cores=n_thread)
     }
     use_trimmed_fastq= if(trim_fastq){TRUE} else {FALSE}

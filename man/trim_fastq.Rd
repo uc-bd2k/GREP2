@@ -4,8 +4,8 @@
 \alias{trim_fastq}
 \title{Trim fastq files using Trimmomatic}
 \usage{
-trim_fastq(srr_id, fastq_dir, instrument, trimmomatic_path,
-  library_layout = c("SINGLE", "PAIRED"), destdir, n_thread)
+trim_fastq(srr_id, fastq_dir, instrument, library_layout = c("SINGLE",
+  "PAIRED"), destdir, n_thread)
 }
 \arguments{
 \item{srr_id}{SRA run accession ID.}
@@ -14,8 +14,6 @@ trim_fastq(srr_id, fastq_dir, instrument, trimmomatic_path,
 
 \item{instrument}{name of the illumina sequencing platform.
 For example, \code{'HiSeq'}.}
-
-\item{trimmomatic_path}{path to the Trimmomatic software.}
 
 \item{library_layout}{layout of the library used. Either \code{'SINGLE'}
 or \code{'PAIRED'}.}
@@ -47,10 +45,9 @@ the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
 
 \donttest{
 fastq_dir=system.file("extdata","", package="GREP2")
-trimmomatic_path=system.file("java","trimmomatic-0.36.jar", package="GREP2")
 trim_fastq(srr_id="SRR5890521",fastq_dir=fastq_dir,
-instrument="MiSeq",trimmomatic_path=trimmomatic_path,
-library_layout="SINGLE",destdir=tempdir(),n_thread=2)
+instrument="MiSeq",library_layout="SINGLE",
+destdir=tempdir(),n_thread=2)
 }
 
 }

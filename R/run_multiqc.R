@@ -17,9 +17,10 @@
 #' \url{https://doi.org/10.1093/bioinformatics/btw354}
 #'
 #' @examples
-#' destdir="/mnt/raid/test"
+#'
 #' \dontrun{
-#' run_fastqc(destdir=destdir,fastq_dir="path_to_fatsq_dir",n_thread=2)
+#' run_multiqc(fastqc_dir=tempdir(),salmon_dir=tempdir(),
+#' destdir=tempdir())
 #' }
 #'
 #' @export 

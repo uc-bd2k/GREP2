@@ -21,9 +21,10 @@ HTML report.
 reports and salmon read mapping results using MultiQC.
 }
 \examples{
-destdir="/mnt/raid/test"
+
 \dontrun{
-run_fastqc(destdir=destdir,fastq_dir="path_to_fatsq_dir",n_thread=2)
+run_multiqc(fastqc_dir=tempdir(),salmon_dir=tempdir(),
+destdir=tempdir())
 }
 
 }
