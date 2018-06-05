@@ -27,7 +27,7 @@ GEOquery [@davis2007geoquery]. We also download metadata file from
 the sequence read archive (SRA) to get corresponding run information.
 
 2. Download corresponding experiment run files from the SRA using `ascp` 
-utility of [Aspera Connect](http://download.asperasoft.com/download/docs/connect/2.3/aspera-connect-linux.html#installation). All the downloaded
+utility of [Aspera Connect](http://download.asperasoft.com/download/docs/connect/2.3/aspera-connect-linux.html#installation) or regular downloading. All the downloaded
 files are stored in the local repository until processed. You can skip this
 step by downloading fastq files directly.
 

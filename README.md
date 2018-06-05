@@ -60,8 +60,8 @@ geo_only=FALSE,download_method="auto")
 ```
 
 2. Download corresponding experiment run files from the SRA using `ascp` 
-utility of [Aspera Connect](http://download.asperasoft.com/download/docs/connect/2.3/aspera-connect-linux.html#installation). All the downloaded
-files are stored in the local repository until processed. You can skip this
+utility of [Aspera Connect](http://download.asperasoft.com/download/docs/connect/2.3/aspera-connect-linux.html#installation) or 
+regular download. All the downloaded files are stored in the local repository until processed. You can skip this
 step by downloading fastq files directly.
 ```
 get_srr(srr_id="SRR5890521", destdir=tempdir(), ascp=FALSE,
