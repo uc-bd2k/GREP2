@@ -1,14 +1,18 @@
 Package: GREP2
 Type: Package
 Title: GEO RNA-Seq Experiments Processing Pipeline
-Version: 0.99.9
+Version: 1.0.0
 Authors@R: c(person("Naim Al", "Mahi", role = c("cre", "aut"),
 				email = "mahina@mail.uc.edu"),
 				person("Mario", "Medvedovic", role = c("aut", "ctb")))
 Maintainer: Naim Al Mahi <mahina@mail.uc.edu>
 Description: An R based pipeline to download and process Gene Expression Omnibus (GEO) RNA-seq data. 
     For a given GEO series accession ID, this pipeline generates metadata, 
-    both gene and transcript level counts, and quality control (QC) report.
+    both gene and transcript level counts, and quality control (QC) report. 
+	This package is mainly developed to process the GEO RNA-seq datasets 
+	for the web platform GREIN. More details about GREP2 and GREIN can be 
+	found here <https://doi.org/10.1101/326223>.
+	
 Depends: R (>= 3.4.0)
 Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport, 
     EnsDb.Hsapiens.v86, EnsDb.Rnorvegicus.v79, EnsDb.Mmusculus.v79,
