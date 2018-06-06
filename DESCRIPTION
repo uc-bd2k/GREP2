@@ -11,8 +11,7 @@ Description: An R based pipeline to download and process Gene Expression Omnibus
     both gene and transcript level counts, and quality control (QC) report. 
 	This package is mainly developed to process the GEO RNA-seq datasets 
 	for the web platform GREIN. More details about GREP2 and GREIN can be 
-	found here <https://doi.org/10.1101/326223>.
-	
+	found here <doi:10.1101/326223>.
 Depends: R (>= 3.4.0)
 Imports: XML, rentrez, RCurl, GEOquery, Biobase, parallel, tximport, 
     EnsDb.Hsapiens.v86, EnsDb.Rnorvegicus.v79, EnsDb.Mmusculus.v79,

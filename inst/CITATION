@@ -8,8 +8,23 @@ citEntry(entry="article",
          year = 2018,
 		 pages = 326223,
          journal = "bioRxiv",
-         doi = "https://doi.org/10.1101/326223",
+		 doi = "10.1101/326223",
          textVersion =
            paste("Naim Al Mahi, Mehdi Fazel Najafabadi, Marcin Pilarczyk, Michal Kouril, Mario Medvedovic (2018):",
                  "GREIN: An interactive web platform for re-analyzing GEO RNA-seq data.",
-                 "bioRxiv" ) )
+                 "bioRxiv" )
+	    )
+
+citEntry(entry="Manual",
+     title = "GREP2: GEO RNA-Seq Experiments Processing Pipeline.",
+     author = personList(as.person("Naim Al Mahi"),
+	    as.person("Mario Medvedovic")),
+	 year = 2018,
+     organization="University of Cincinnati",
+     note = "R package version 1.0.0",
+     url = "https://CRAN.R-project.org/package=GREP2",
+     textVersion =
+       paste("Naim Al Mahi, Mario Medvedovic (2018):",
+	   "GREP2: GEO RNA-Seq Experiments Processing Pipeline.",
+	   "R package version 1.0.0")
+	)

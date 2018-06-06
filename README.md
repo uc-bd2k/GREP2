@@ -126,8 +126,8 @@ process_geo_rnaseq (geo_series_acc=geo_series_acc,destdir=tempdir(),
 download_method="auto",
 ascp=FALSE,prefetch_workspace=NULL,
 ascp_path=NULL,use_sra_file=FALSE,trim_fastq=FALSE,
-trimmomatic_path=NULL,index_dir=tempdir(),
-species="human",countsFromAbundance="lengthScaledTPM",n_thread=1)
+index_dir=tempdir(),species="human",
+countsFromAbundance="lengthScaledTPM",n_thread=1)
 ```
 
 
