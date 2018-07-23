@@ -68,8 +68,11 @@ use_sra_file=FALSE,sra_files_dir=NULL,n_thread,destdir) {
     }
     
     n_fastq <- if(library_layout=="PAIRED") {2} else {1}
-    fastq_dumped <- length(list.files(destdir,
-        pattern="\\.fastq$",recursive=FALSE,full.names=FALSE))
+    #fastq_dumped <- length(list.files(destdir,
+    #    pattern="\\.fastq$",recursive=FALSE,full.names=FALSE))
+	fastq_files <- list.files(destdir,
+        pattern="\\.fastq$",recursive=FALSE,full.names=FALSE)
+	fastq_dumped <- length(grep(srr_id,fastq_files,ignore.case=T))
     if(n_fastq!=fastq_dumped){
         warning("Incomplete fastq download...")
     } else {

@@ -55,7 +55,7 @@ GEOquery. We also download metadata file from
 the sequence read archive (SRA) to get corresponding run information.
 ```
 library(GREP2)
-get_metadata(geo_series_acc="GSE102170",destdir=tempdir(),
+metadata <- get_metadata(geo_series_acc="GSE102170",destdir=tempdir(),
 geo_only=FALSE,download_method="auto")
 ```
 
@@ -64,16 +64,22 @@ utility of [Aspera Connect](http://download.asperasoft.com/download/docs/connect
 regular download. All the downloaded files are stored in the local repository until processed. You can skip this
 step by downloading fastq files directly.
 ```
-get_srr(srr_id="SRR5890521", destdir=tempdir(), ascp=FALSE,
-prefetch_workspace=NULL,ascp_path=NULL)
+srr_id <- metadata$metadata_sra$Run
+for(i in 1:length(srr_id)){
+	get_srr(srr_id=srr_id[i], destdir=tempdir(), ascp=FALSE,
+	prefetch_workspace=NULL,ascp_path=NULL)
+}
 ```
 
 3. Convert SRA files to fastq format using [NCBI SRA toolkit](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) 
 or download fastq files directly. 
 ```
-get_fastq(srr_id="SRR5890521",library_layout="SINGLE",
-use_sra_file=FALSE,sra_files_dir=NULL,n_thread=2,
-destdir=tempdir())
+library_layout <- metadata$metadata_sra$LibraryLayout
+for(i in 1:length(srr_id)){
+	get_fastq(srr_id=srr_id[i],library_layout=library_layout[i],
+	use_sra_file=FALSE,sra_files_dir=NULL,n_thread=2,
+	destdir=tempdir())
+}
 ```
 
 4. Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
@@ -85,8 +91,10 @@ n_thread=2)
 
 5. Remove adapter sequences if necessary using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).
 ```
-trim_fastq(srr_id="SRR5890521",fastq_dir=tempdir(),
-instrument="MiSeq",library_layout="SINGLE",destdir=tempdir(),n_thread=2)
+for(i in 1:length(srr_id)){
+	trim_fastq(srr_id=srr_id[i],fastq_dir=tempdir(),
+	instrument="MiSeq",library_layout=library_layout[i],destdir=tempdir(),n_thread=2)
+}
 ```
 
 6. Quantify transcript abundances using [Salmon](http://salmon.readthedocs.io/en/latest/building.html). 
@@ -100,13 +108,17 @@ from Ensemble.
 build_index(species="human",kmer=31,ens_release=92,
 destdir=tempdir())
 # Run Salmon
-run_salmon(srr_id="SRR5890521",library_layout="SINGLE",
-index_dir=tempdir(),destdir=tempdir(),
-fastq_dir=tempdir(),use_trimmed_fastq=FALSE,
-other_opts=NULL,n_thread=2)
+for(i in 1:length(srr_id)){
+	run_salmon(srr_id=srr_id[i],library_layout=library_layout[i],
+	index_dir=tempdir(),destdir=tempdir(),
+	fastq_dir=tempdir(),use_trimmed_fastq=FALSE,
+	other_opts=NULL,n_thread=2)
+}
 # Run tximport
-run_tximport(srr_id="SRR5890521", species="human",
-salmon_dir=tempdir(),countsFromAbundance="lengthScaledTPM")
+for(i in 1:length(srr_id)){
+	run_tximport(srr_id=srr_id[i], species="human",
+	salmon_dir=tempdir(),countsFromAbundance="lengthScaledTPM")
+}
 ```
 
 7. Compile FastQC reports and Salmon log files into a single
