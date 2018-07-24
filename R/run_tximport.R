@@ -93,7 +93,7 @@ salmon_dir,countsFromAbundance=c("no","scaledTPM","lengthScaledTPM")){
 
     cat("generating counts table\n")
     tx.t <- tximport::tximport(files, type="salmon", tx2gene=tx2gene,
-        txOut=TRUE, importer=utils::read.delim,
+        txOut=TRUE, importer=utils::read.delim,dropInfReps=TRUE,
         countsFromAbundance=countsFromAbundance)
     if(all(apply(is.na(tx.t$counts), 2, any))==TRUE ){
         txi.t <- tximport::tximport(files, type="salmon",

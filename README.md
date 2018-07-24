@@ -115,10 +115,8 @@ for(i in 1:length(srr_id)){
 	other_opts=NULL,n_thread=2)
 }
 # Run tximport
-for(i in 1:length(srr_id)){
-	run_tximport(srr_id=srr_id[i], species="human",
-	salmon_dir=tempdir(),countsFromAbundance="lengthScaledTPM")
-}
+counts_list <- run_tximport(srr_id=srr_id, species="human",
+salmon_dir=paste0(tempdir(),"/salmon"),countsFromAbundance="lengthScaledTPM")
 ```
 
 7. Compile FastQC reports and Salmon log files into a single

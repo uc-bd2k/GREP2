@@ -32,8 +32,8 @@ use_sra_file=FALSE,sra_files_dir=NULL,n_thread,destdir) {
 
     library_layout <- match.arg(library_layout,c("SINGLE","PAIRED"))
     if (library_layout=="SINGLE") {
-        if(length(list.files(destdir,pattern=".fastq"))
-            ==1) {
+        if(length(grep(srr_id,list.files(destdir,pattern=".fastq"),
+		ignore.case=T))==1) {
             warning("Fastq file exist. Processing next sample...")
         } else {
             cat("Converting sra to fastq...")
@@ -49,8 +49,8 @@ use_sra_file=FALSE,sra_files_dir=NULL,n_thread,destdir) {
 			}
         }
     } else {
-        if(length(list.files(paste0(destdir,"/",srr_id),
-            pattern=".fastq"))==2) {
+        if(length(grep(srr_id,list.files(destdir,pattern=".fastq"),
+			ignore.case=T))==2) {
             warning("Fastq file exist. Processing next sample...")
         } else {
             cat("Converting sra to fastq...")
