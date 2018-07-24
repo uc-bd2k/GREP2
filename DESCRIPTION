@@ -1,7 +1,7 @@
 Package: GREP2
 Type: Package
 Title: GEO RNA-Seq Experiments Processing Pipeline
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Naim Al", "Mahi", role = c("cre", "aut"),
 				email = "mahina@mail.uc.edu"),
 				person("Mario", "Medvedovic", role = c("aut", "ctb")))
