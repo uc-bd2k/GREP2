@@ -22,7 +22,7 @@
 run_fastqc <- function(destdir, fastq_dir, n_thread ) {
     cat(paste("Running FastQC... ",Sys.time(),"\n",sep=""))
     fastq_files = list.files(fastq_dir, pattern=".fastq$", full.names=TRUE)
-
+	setwd(destdir)
     if(!dir.exists("fastqc")){
         system(paste0("mkdir ",destdir,"/fastqc"))
     }

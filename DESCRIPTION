@@ -1,7 +1,7 @@
 Package: GREP2
 Type: Package
 Title: GEO RNA-Seq Experiments Processing Pipeline
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(person("Naim Al", "Mahi", role = c("cre", "aut"),
 				email = "mahina@mail.uc.edu"),
 				person("Mario", "Medvedovic", role = c("aut", "ctb")))
@@ -24,4 +24,5 @@ BugReports: https://github.com/uc-bd2k/GREP2/issues
 License: GPL-3
 VignetteBuilder: knitr
 LazyData: true
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.1

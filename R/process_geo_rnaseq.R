@@ -92,8 +92,9 @@ process_geo_rnaseq <- function(geo_series_acc,destdir,
     destdir <- paste0(destdir,"/",geo_series_acc,"/")
 
     cat(paste("Downloading metadata... ",Sys.time(),"\n",sep=""))
-    metadata <- get_metadata(geo_series_acc,destdir,
-    geo_only=FALSE,download_method)
+    metadata <- tryCatch(get_metadata(geo_series_acc,destdir,
+	    geo_only=FALSE,download_method),
+	    error = function(e) print(paste('Download metadata failed. Please try again.')))
     metadata$metadata_geo <- metadata$metadata_geo[which(
         metadata$metadata_geo$library_strategy=="RNA-Seq"),]
     metadata$metadata_sra <- metadata$metadata_sra[which(

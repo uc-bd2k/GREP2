@@ -28,7 +28,8 @@ get_metadata <- function(geo_series_acc,destdir,geo_only=FALSE,
 download_method="auto") {
 
     options(warn=-1)
-    geo_id <- rentrez::entrez_search(db="gds",term=geo_series_acc)$ids[[1]]
+    geo_id <- tryCatch(rentrez::entrez_search(db="gds",term=geo_series_acc)$ids[[1]],
+	    error = function(e) print(paste('Invalid GEO id')))
     geo_summary <- XML::xmlRoot(XML::xmlTreeParse(RCurl::getURL(
         paste0("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
         "esummary.fcgi?db=gds&id=", geo_id))))
@@ -37,8 +38,10 @@ download_method="auto") {
 
     # GEO metadata
 	options(download.file.method.GEOquery=download_method)
-    x <- GEOquery::getGEO(geo_series_acc, AnnotGPL=FALSE,GSEMatrix=FALSE,
-        destdir = destdir ,getGPL=FALSE)
+		
+    x <- tryCatch(GEOquery::getGEO(geo_series_acc, AnnotGPL=FALSE,GSEMatrix=FALSE,
+        destdir = destdir ,getGPL=FALSE),
+	    error = function(e) print(paste('Download failed. Please try again.')))
     nm <- names(x@gpls)
     stub=gsub("\\d{1,3}$", "nnn", geo_series_acc, perl = TRUE)
     gseurl <- "https://ftp.ncbi.nlm.nih.gov/geo/series/%s/%s/matrix/%s"
@@ -69,6 +72,7 @@ download_method="auto") {
         geo_df <- Biobase::pData(phenoData(getGEO(geo_series_acc,
             filename = paste0(destdir,"/",geo_series_acc, "_series_matrix.txt.gz"),
             GSEMatrix=TRUE,destdir = destdir ,getGPL=FALSE)))
+		closeAllConnections()
         metadata_geo <- data.frame(lapply(geo_df, as.character),
             stringsAsFactors=FALSE)
     }
@@ -80,6 +84,7 @@ download_method="auto") {
 		"efetch&db=sra&rettype=runinfo&term=",sra_study_acc)
 		utils::download.file(sra_url, destfile=paste0(destdir,"/",
 			geo_series_acc,"_metadata.csv"),method=download_method)
+		closeAllConnections()
 		metadata_sra <- data.frame(lapply(utils::read.csv(file=
 			paste(destdir,"/",geo_series_acc,"_metadata.csv", sep=""), header=TRUE),
 			as.character), stringsAsFactors=FALSE)
@@ -88,4 +93,5 @@ download_method="auto") {
 	save(metadata, file=paste0(destdir,"/metadata.rda"))
     return(metadata)
     options(warn=0)
+	closeAllConnections()
 }

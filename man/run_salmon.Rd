@@ -4,8 +4,9 @@
 \alias{run_salmon}
 \title{Quantify transcript abundances using Salmon}
 \usage{
-run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir, destdir,
-  fastq_dir, use_trimmed_fastq = FALSE, other_opts = NULL, n_thread)
+run_salmon(srr_id, library_layout = c("SINGLE", "PAIRED"), index_dir,
+  destdir, fastq_dir, use_trimmed_fastq = FALSE, other_opts = NULL,
+  n_thread)
 }
 \arguments{
 \item{srr_id}{SRA run accession ID.}

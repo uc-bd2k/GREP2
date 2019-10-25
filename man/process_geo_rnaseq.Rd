@@ -6,9 +6,9 @@
 \usage{
 process_geo_rnaseq(geo_series_acc, destdir, download_method = "auto",
   ascp = TRUE, prefetch_workspace, ascp_path, use_sra_file = FALSE,
-  trim_fastq = FALSE, index_dir, other_opts = NULL, species = c("human",
-  "mouse", "rat"), countsFromAbundance = c("no", "scaledTPM",
-  "lengthScaledTPM"), n_thread)
+  trim_fastq = FALSE, index_dir, other_opts = NULL,
+  species = c("human", "mouse", "rat"), countsFromAbundance = c("no",
+  "scaledTPM", "lengthScaledTPM"), n_thread)
 }
 \arguments{
 \item{geo_series_acc}{GEO series accession ID.}
